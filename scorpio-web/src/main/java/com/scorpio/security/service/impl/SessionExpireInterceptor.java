@@ -1,19 +1,21 @@
 package com.scorpio.security.service.impl;
 
-import com.google.common.collect.Sets;
-import com.scorpio.Constants;
-import com.scorpio.helper.HotPropertiesHelper;
-import com.scorpio.security.LoggedUserContext;
-import com.scorpio.security.bo.LoggedUser;
+import java.util.Set;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.Set;
+import com.google.common.collect.Sets;
+import com.scorpio.Constants;
+import com.scorpio.helper.HotPropertiesHelper;
+import com.scorpio.security.LoggedUserContext;
+import com.scorpio.security.bo.LoggedUser;
 
 @Service
 public class SessionExpireInterceptor implements HandlerInterceptor {
@@ -31,7 +33,8 @@ public class SessionExpireInterceptor implements HandlerInterceptor {
   public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
       throws Exception {
 
-    int sessionExpiredSecond = Integer.parseInt(HotPropertiesHelper.getProperty("loggeduser.session.expired.second"));
+    int sessionExpiredSecond = Integer
+        .parseInt(HotPropertiesHelper.getProperty("loggeduser.session.expired.second"));
     if (sessionExpiredSecond <= 0) {
       return HandlerInterceptor.super.preHandle(request, response, handler);
     }

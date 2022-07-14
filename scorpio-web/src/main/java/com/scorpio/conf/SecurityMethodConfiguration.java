@@ -1,7 +1,7 @@
 package com.scorpio.conf;
 
-import com.google.common.collect.Lists;
-import com.scorpio.Constants;
+import java.util.List;
+
 import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.access.AccessDecisionVoter;
 import org.springframework.security.access.vote.AffirmativeBased;
@@ -9,7 +9,8 @@ import org.springframework.security.access.vote.RoleVoter;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration;
 
-import java.util.List;
+import com.google.common.collect.Lists;
+import com.scorpio.Constants;
 
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityMethodConfiguration extends GlobalMethodSecurityConfiguration {

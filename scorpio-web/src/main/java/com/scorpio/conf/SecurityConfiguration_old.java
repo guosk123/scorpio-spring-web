@@ -13,12 +13,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.session.SessionInformation;
 import org.springframework.security.core.session.SessionRegistry;
-import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -41,10 +39,10 @@ import com.scorpio.security.filter.RefererFilter;
 import com.scorpio.security.filter.VerifyCodeFilter;
 
 /**
- * 高版本security可用该方式去配置security，因为WebSecurityConfigurerAdapter已被启用
+ * 低版本security可用该方式去配置security(WebSecurity)
  */
-@EnableWebSecurity
-public class SecurityConfiguration implements WebSecurityCustomizer {
+// @Configuration
+public class SecurityConfiguration_old extends WebSecurityConfigurerAdapter {
 
   @Value("${loggeduser.concurrent.max.session}")
   private String loggedUserMaxSession;
@@ -59,86 +57,78 @@ public class SecurityConfiguration implements WebSecurityCustomizer {
   private DefaultKaptcha defaultKaptcha;
 
   @Override
-  public void customize(WebSecurity web) {
-    // 静态资源绕过Security
-    web.ignoring().antMatchers("/web-static/**", "/error");
-  }
-
-  @Bean
-  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+  protected void configure(HttpSecurity http) throws Exception {
 
     // @formatter:off
-        // 关闭基本的弹窗鉴权
-        http.httpBasic().disable();
+    // 关闭基本的弹窗鉴权
+    http.httpBasic().disable();
 
-        // 防护范围
-        http.authorizeRequests()
-                .antMatchers("/actuator/**", "/web-static/**", "/error", "/api/**", "/restapi/**")
-                .permitAll()
-                .anyRequest()
-                .fullyAuthenticated();
+    // 防护范围
+    http.authorizeRequests()
+    .antMatchers("/actuator/**", "/web-static/**", "/error", "/api/**", "/restapi/**")
+    .permitAll()
+    .anyRequest()
+    .fullyAuthenticated();
 
-        AuthenticationSuccessHandler successHandler = new AjaxAuthSuccessHandler();
-        AuthenticationFailureHandler failureHandler = new AjaxAuthFailHandler();
-        LogoutHandler logoutHandler = new AjaxLogoutHandler();
+    AuthenticationSuccessHandler successHandler = new AjaxAuthSuccessHandler();
+    AuthenticationFailureHandler failureHandler = new AjaxAuthFailHandler();
+    LogoutHandler logoutHandler = new AjaxLogoutHandler();
+    
+    // Ajax登录登出
+    http.exceptionHandling()
+        .authenticationEntryPoint(new AjaxAuthEntryPoint("/login"))
+        .and()
+        .formLogin()
+        .successHandler(successHandler)
+        .failureHandler(failureHandler)
+        .permitAll()
+        .and()
+        .logout()
+        .logoutSuccessUrl("/")
+        .addLogoutHandler(logoutHandler)
+        .permitAll()
+        .and()
+        .sessionManagement()
+        .sessionAuthenticationStrategy(sessionAuthenticationStrategy());
+    
+    // iframe
+    http.headers().frameOptions().disable();
+    
+    // 将csp加入到header
+    http.headers()
+      .contentTypeOptions()
+      .and()
+      .xssProtection()
+      .and()
+      .cacheControl()
+      .and()
+      .httpStrictTransportSecurity()
+      .and()
+      .addHeaderWriter(new StaticHeadersWriter("X-Content-Security-Policy", "default-src 'self'"));
+      
+    // 添加校验码验证filter
+    http.addFilterBefore(new VerifyCodeFilter(defaultKaptcha, failureHandler),
+            UsernamePasswordAuthenticationFilter.class);
 
-        // Ajax登录登出
-        http.exceptionHandling()
-                .authenticationEntryPoint(new AjaxAuthEntryPoint("/login"))
-                .and()
-                .formLogin()
-                .successHandler(successHandler)
-                .failureHandler(failureHandler)
-                .permitAll()
-                .and()
-                .logout()
-                .logoutSuccessUrl("/")
-                .addLogoutHandler(logoutHandler)
-                .permitAll()
-                .and()
-                .sessionManagement()
-                .sessionAuthenticationStrategy(sessionAuthenticationStrategy());
+    // 添加IP登录白名单filter，允许登录IP段，过滤
+    http.addFilterAfter(new IpFilter(), VerifyCodeFilter.class);
+    
+    // 添加referrer校验，仅允许请求域名和referer一致（站内跳转）或白名单内域名访问
+    http.addFilterAfter(new RefererFilter(servletContextPath), CsrfFilter.class);
 
-        // iframe
-        http.headers().frameOptions().disable();
-
-        // 将csp加入到header
-        http.headers()
-                .contentTypeOptions()
-                .and()
-                .xssProtection()
-                .and()
-                .cacheControl()
-                .and()
-                .httpStrictTransportSecurity()
-                .and()
-                .addHeaderWriter(new StaticHeadersWriter("X-Content-Security-Policy", "default-src 'self'"));
-
-        // 添加校验码验证filter
-        http.addFilterBefore(new VerifyCodeFilter(defaultKaptcha, failureHandler),
-                UsernamePasswordAuthenticationFilter.class);
-
-        // 添加IP登录白名单filter，允许登录IP段，过滤
-        http.addFilterAfter(new IpFilter(), UsernamePasswordAuthenticationFilter.class);
-
-        // 添加referrer校验，仅允许请求域名和referer一致（站内跳转）或白名单内域名访问
-        http.addFilterAfter(new RefererFilter(servletContextPath), CsrfFilter.class);
-
-        http.addFilter(new ConcurrentSessionFilter(sessionRegistry, new SessionInformationExpiredStrategy() {
-            // session失效处理
-            @Override
-            public void onExpiredSessionDetected(SessionInformationExpiredEvent event)
-                    throws IOException, ServletException {
-                event.getResponse().sendError(HttpServletResponse.SC_UNAUTHORIZED, "session expired");
-            }
-        }));
-
-        http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
-        http.csrf().ignoringAntMatchers("/actuator/**","/restapi/**", "/api/**");
-
-        // @formatter:on
-
-    return http.build();
+    http.addFilter(new ConcurrentSessionFilter(sessionRegistry, new SessionInformationExpiredStrategy() {
+      // session失效处理
+         @Override
+         public void onExpiredSessionDetected(SessionInformationExpiredEvent event)
+             throws IOException, ServletException {
+           event.getResponse().sendError(HttpServletResponse.SC_UNAUTHORIZED, "session expired");
+         }
+       }));
+    
+    http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+    http.csrf().ignoringAntMatchers("/actuator/**","/restapi/**", "/api/**");
+    
+    // @formatter:on
   }
 
   @Bean
@@ -175,6 +165,12 @@ public class SecurityConfiguration implements WebSecurityCustomizer {
         Arrays.asList(concurrentSessionControlAuthenticationStrategy,
             sessionFixationProtectionStrategy, registerSessionStrategy));
     return sessionAuthenticationStrategy;
+  }
+
+  @Override
+  public void configure(WebSecurity web) throws Exception {
+    // 静态资源绕过Security
+    web.ignoring().antMatchers("/web-static/**", "/error");
   }
 
 }

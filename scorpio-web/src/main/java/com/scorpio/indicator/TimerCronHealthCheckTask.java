@@ -1,11 +1,12 @@
 package com.scorpio.indicator;
 
-import com.scorpio.helper.HotPropertiesHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+
+import com.scorpio.helper.HotPropertiesHelper;
 
 /**
  * Scheduled配置Cron时，时间向回跳将导致定时器无法执行，此Task用于判断这种情况，由WatchDog进行处理。

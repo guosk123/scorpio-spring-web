@@ -1,8 +1,16 @@
 package com.scorpio.security.filter;
 
-import com.google.common.cache.CacheBuilder;
-import com.google.common.cache.CacheLoader;
-import com.google.common.cache.LoadingCache;
+import java.io.IOException;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,15 +19,9 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
+import com.google.common.cache.CacheBuilder;
+import com.google.common.cache.CacheLoader;
+import com.google.common.cache.LoadingCache;
 
 /**
  * 可通过过滤器限制可登录的IP
@@ -32,23 +34,21 @@ public class IpFilter extends AbstractAuthenticationProcessingFilter {
 
   private RequestMatcher requestMatcher = DEFAULT_REFERER_MATCHER;
 
-  private LoadingCache<String,
-      Boolean> cache = CacheBuilder.newBuilder().maximumSize(128)
-          .expireAfterWrite(3, TimeUnit.SECONDS)
-          .build(new CacheLoader<String, Boolean>() {
-            @Override
-            public Boolean load(String key) throws Exception {
-              try {
-                // 判断当前IP在白名单内
-                return StringUtils.equals(key, "localhost");
-              } catch (Exception e) {
-                return false;
-              }
-            }
-          });
+  private LoadingCache<String, Boolean> cache = CacheBuilder.newBuilder().maximumSize(128)
+      .expireAfterWrite(3, TimeUnit.SECONDS).build(new CacheLoader<String, Boolean>() {
+        @Override
+        public Boolean load(String key) throws Exception {
+          try {
+            // 判断当前IP在白名单内
+            return true;
+          } catch (Exception e) {
+            return false;
+          }
+        }
+      });
 
   public IpFilter() {
-    super("/webapi/**");
+    super("/api/**");
   }
 
   @Override

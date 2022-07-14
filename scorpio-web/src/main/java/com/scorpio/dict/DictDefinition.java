@@ -1,14 +1,15 @@
 package com.scorpio.dict;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.scorpio.Constants;
-
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
+
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.scorpio.Constants;
 
 @XmlRootElement(name = "dict-definition")
 public class DictDefinition implements Serializable {
@@ -27,12 +28,12 @@ public class DictDefinition implements Serializable {
 
   public Map<String, String> getItemMap(String key) {
     List<Dict.Item> items = getItem(key);
-    
+
     // 防止空指针
     if (items == null) {
       return Maps.newLinkedHashMapWithExpectedSize(Constants.MAP_DEFAULT_SIZE);
     }
-    
+
     Map<String, String> result = Maps.newLinkedHashMapWithExpectedSize(items.size());
     for (Dict.Item item : items) {
       result.put(item.getKey(), item.getLabel());

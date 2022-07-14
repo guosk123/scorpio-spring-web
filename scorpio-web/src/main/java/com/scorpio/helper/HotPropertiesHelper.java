@@ -1,5 +1,14 @@
 package com.scorpio.helper;
 
+import java.io.IOException;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.TimeUnit;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.concurrent.NotThreadSafe;
+
 import org.apache.commons.configuration2.FileBasedConfiguration;
 import org.apache.commons.configuration2.PropertiesConfiguration;
 import org.apache.commons.configuration2.builder.ReloadingFileBasedConfigurationBuilder;
@@ -18,14 +27,6 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.concurrent.NotThreadSafe;
-import java.io.IOException;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ThreadFactory;
-import java.util.concurrent.TimeUnit;
-
 /**
  * 读取一个属性文件里的配置，且属性文件改变时，不用重启应用，自动读取新的值
  *
@@ -39,7 +40,11 @@ public class HotPropertiesHelper implements ApplicationContextAware {
   private static final long RELOAD_TASK_PERIOD_SEC = 10;
   private static final long RELOAD_TASK_DELAY_SEC = 60;
 
-  private static final String ENV_CONFIG = System.getenv("ENV_CONFIG");
+  private static final String WEB_CONFIG = System.getenv("WEB_CONFIG");
+  private static final String WEB_LOG = System.getenv("WEB_LOG");
+  private static final String WEB_DATA = System.getenv("WEB_DATA");
+  private static final String WEB_APP = System.getenv("WEB_APP");
+
   private static FileBasedConfiguration configurationCommon;
   private static FileBasedConfiguration configuration;
   private static FileBasedConfiguration configurationDev;
@@ -169,7 +174,10 @@ public class HotPropertiesHelper implements ApplicationContextAware {
       value = encryptor.decrypt(StringUtils.removeEnd(StringUtils.removeStart(value, "ENC("), ")"));
     }
 
-    value = value.replace("${ENV_CONFIG}", ENV_CONFIG);
+    value = value.replace("${WEB_CONFIG}", WEB_CONFIG);
+    value = value.replace("${WEB_LOG}", WEB_LOG);
+    value = value.replace("${WEB_DATA}", WEB_DATA);
+    value = value.replace("${WEB_APP}", WEB_APP);
 
     return value;
   }

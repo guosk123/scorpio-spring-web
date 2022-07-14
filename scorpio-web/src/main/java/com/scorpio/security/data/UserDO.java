@@ -7,20 +7,20 @@ public class UserDO {
   private String name;
   private String fullname;
   private String password;
-  private String needChangePassword;
+  private String needChangePassword = "0";
   private String appKey;
   private String appToken;
   private String userType;
   private String description;
-  private String locked;
+  private String locked = "0";
   private Date passwordUpdateTime;
 
   @Override
   public String toString() {
-    return "UserDO [name=" + name + ", fullname=" + fullname + ", password="
-        + password + ", needChangePassword=" + needChangePassword + ", appKey=" + appKey
-        + ", appToken=" + appToken + ", userType=" + userType + ", description=" + description
-        + ", locked=" + locked + ", passwordUpdateTime=" + passwordUpdateTime + "]";
+    return "UserDO [name=" + name + ", fullname=" + fullname + ", password=" + password
+        + ", needChangePassword=" + needChangePassword + ", appKey=" + appKey + ", appToken="
+        + appToken + ", userType=" + userType + ", description=" + description + ", locked="
+        + locked + ", passwordUpdateTime=" + passwordUpdateTime + "]";
   }
 
   public String getName() {

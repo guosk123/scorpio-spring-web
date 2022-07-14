@@ -1,16 +1,18 @@
 package com.scorpio.exception;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.scorpio.Constants;
-import org.springframework.validation.BindException;
-import org.springframework.web.bind.MethodArgumentNotValidException;
-
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
+
+import org.springframework.validation.BindException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.scorpio.Constants;
 
 public final class ExceptionInfoExtractor {
 

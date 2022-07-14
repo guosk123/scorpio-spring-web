@@ -1,13 +1,14 @@
 package com.scorpio.security.listener;
 
-import com.scorpio.security.service.impl.LoggedUserManager;
+import javax.servlet.annotation.WebListener;
+import javax.servlet.http.HttpSessionEvent;
+import javax.servlet.http.HttpSessionListener;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.servlet.annotation.WebListener;
-import javax.servlet.http.HttpSessionEvent;
-import javax.servlet.http.HttpSessionListener;
+import com.scorpio.security.service.impl.LoggedUserManager;
 
 @WebListener
 public class SessionListener implements HttpSessionListener {

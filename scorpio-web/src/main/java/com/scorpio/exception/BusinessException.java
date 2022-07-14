@@ -1,11 +1,11 @@
 package com.scorpio.exception;
 
-import com.google.common.collect.Lists;
-import com.scorpio.Constants;
-
 import java.io.StringWriter;
 import java.util.List;
 import java.util.Map;
+
+import com.google.common.collect.Lists;
+import com.scorpio.Constants;
 
 public class BusinessException extends RuntimeException {
 

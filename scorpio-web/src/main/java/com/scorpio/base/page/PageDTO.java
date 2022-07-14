@@ -1,11 +1,12 @@
 package com.scorpio.base.page;
 
-import com.google.common.collect.Lists;
-import com.scorpio.Constants;
-import org.apache.commons.collections.CollectionUtils;
-
 import java.util.Iterator;
 import java.util.List;
+
+import org.apache.commons.collections.CollectionUtils;
+
+import com.google.common.collect.Lists;
+import com.scorpio.Constants;
 
 public class PageDTO<T> {
 

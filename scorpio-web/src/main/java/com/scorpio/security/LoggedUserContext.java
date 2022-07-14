@@ -1,6 +1,7 @@
 package com.scorpio.security;
 
-import com.scorpio.security.bo.LoggedUser;
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.lang.StringUtils;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
@@ -8,7 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import javax.servlet.http.HttpServletRequest;
+import com.scorpio.security.bo.LoggedUser;
 
 public final class LoggedUserContext {
 

@@ -1,10 +1,10 @@
 package com.scorpio.indicator;
 
-import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
-import com.scorpio.Constants;
-import com.scorpio.helper.GracefulShutdownHelper;
-import com.scorpio.helper.HotPropertiesHelper;
+import java.util.Map;
+import java.util.Set;
+
+import javax.annotation.PostConstruct;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,9 +13,11 @@ import org.springframework.boot.actuate.health.HealthIndicator;
 import org.springframework.boot.actuate.health.Status;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
-import java.util.Map;
-import java.util.Set;
+import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
+import com.scorpio.Constants;
+import com.scorpio.helper.GracefulShutdownHelper;
+import com.scorpio.helper.HotPropertiesHelper;
 
 @Component
 public class HealthIndicatorImpl implements HealthIndicator {
@@ -66,7 +68,7 @@ public class HealthIndicatorImpl implements HealthIndicator {
 
       LOGGER.info("health indicator task quit.");
 
-    },"health-indicator-task").start();
+    }, "health-indicator-task").start();
   }
 
   public void watchDog() {

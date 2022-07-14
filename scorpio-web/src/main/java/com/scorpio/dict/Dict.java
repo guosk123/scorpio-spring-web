@@ -1,15 +1,16 @@
 package com.scorpio.dict;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.scorpio.Constants;
-
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.scorpio.Constants;
 
 public class Dict implements Serializable {
 

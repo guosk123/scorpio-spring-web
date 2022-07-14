@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dict-definition>
+
+    <dict key="result_code" label="结果编码">
+        <item key="o" label="成功"></item>
+        <item key="1" label="失败"></item>
+    </dict>
+
+</dict-definition>
+

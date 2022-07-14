@@ -3,9 +3,9 @@ package com.scorpio.base.page;
 import java.util.Objects;
 
 public class PageRequest implements Pageable {
-  
-  private static final int MAX_PAGE_SIZE = 1000; 
-  
+
+  private static final int MAX_PAGE_SIZE = 1000;
+
   private final int page;
   private final int size;
   private final Sort sort;

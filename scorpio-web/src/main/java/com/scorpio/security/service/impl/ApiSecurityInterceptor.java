@@ -1,11 +1,12 @@
 package com.scorpio.security.service.impl;
 
-import com.scorpio.Constants;
-import com.scorpio.util.TokenUtils;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerInterceptor;
+
+import com.scorpio.Constants;
+import com.scorpio.util.TokenUtils;
 
 public abstract class ApiSecurityInterceptor implements HandlerInterceptor {
 
