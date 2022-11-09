@@ -8,11 +8,15 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.SystemUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import reactor.util.function.Tuple2;
+import reactor.util.function.Tuple3;
+import reactor.util.function.Tuples;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -37,6 +41,19 @@ public final class MonitorSystemHelper {
       Pattern.MULTILINE);
   private static final Pattern SLAB_MEMORY_PATTERN = Pattern.compile("Slab:\\s+(\\d+) kB",
       Pattern.MULTILINE);
+
+  private static final Tuple2<Pattern, String> CPU_MODEL_INTEL = Tuples
+          .of(Pattern.compile("(Intel\\(R\\))", Pattern.MULTILINE), "英特尔");
+  private static final Tuple2<Pattern,
+          String> CPU_MODEL_PHYTIUM = Tuples.of(Pattern.compile("(Phytium)", Pattern.MULTILINE), "飞腾");
+  private static final Tuple2<Pattern,
+          String> CPU_MODEL_SW = Tuples.of(Pattern.compile("(SW\\d+)", Pattern.MULTILINE), "申威");
+
+  private static final Tuple3<String, String, Pattern> OS_TAG_KYLINSOFT = Tuples.of("KYLINSOFT",
+          "银河麒麟", Pattern.compile("(ky\\d+)", Pattern.MULTILINE));
+  private static final Tuple3<String, String, Pattern> OS_TAG_CENTOS = Tuples.of("centos", "CentOS",
+          Pattern.compile("(el\\d+)", Pattern.MULTILINE));
+
 
   private MonitorSystemHelper() {
   }
@@ -104,6 +121,95 @@ public final class MonitorSystemHelper {
     LOGGER.trace("Fetch memory metric, free: {}, buffers: {}, cached: {}, slab: {}, total: {}.",
         free, buffers, cached, slab, total);
     return new MonitorMemory(free, buffers, cached, slab, total);
+  }
+
+  /**
+   *
+   * @return
+   */
+  public static String fetchCpuModelInfo() {
+    if (!SystemUtils.IS_OS_LINUX) {
+      return "";
+    }
+
+    // cat /proc/cpuinfo | grep -m 1 "model name" && arch
+    StringBuilder cpuInfo = new StringBuilder();
+
+    Process process = null;
+    try {
+      ProcessBuilder builder = new ProcessBuilder("sh", "-c",
+              "cat /proc/cpuinfo | grep -m 1 \"model name\" && arch");
+      builder.redirectErrorStream(true);
+      process = builder.start();
+      try (BufferedReader reader = new BufferedReader(
+              new InputStreamReader(process.getInputStream(), Charsets.UTF_8))) {
+        String line;
+        int index = 0;
+        while ((line = reader.readLine()) != null) {
+          LOGGER.trace("Detect cpu model info from \" {} \".", line);
+          if (index == 0) {
+            if (CPU_MODEL_INTEL.getT1().matcher(line).find()) {
+              cpuInfo.append(CPU_MODEL_INTEL.getT2());
+            } else if (CPU_MODEL_PHYTIUM.getT1().matcher(line).find()) {
+              cpuInfo.append(CPU_MODEL_PHYTIUM.getT2());
+            } else if (CPU_MODEL_SW.getT1().matcher(line).find()) {
+              cpuInfo.append(CPU_MODEL_SW.getT2());
+            } else {
+              break;
+            }
+          } else {
+            cpuInfo.append(line);
+          }
+
+          index++;
+        }
+      }
+
+      process.waitFor();
+    } catch (InterruptedException e) {
+      LOGGER.info("fetch cpu model has been interrupt.");
+      Thread.currentThread().interrupt();
+    } catch (IOException e) {
+      LOGGER.warn("fetch cpu model failed.", e);
+    } finally {
+      if (process != null) {
+        process.destroy();
+      }
+    }
+
+    return cpuInfo.toString();
+  }
+
+  /**
+   *
+   * @return
+   */
+  public static String fetchOsInfo() {
+    if (!SystemUtils.IS_OS_LINUX) {
+      return "";
+    }
+
+    // cat /proc/version
+    StringBuilder osVersion = new StringBuilder();
+    try {
+      String fileContent = FileUtils.slurp("/proc/version");
+
+      if (StringUtils.containsIgnoreCase(fileContent, OS_TAG_KYLINSOFT.getT1())) {
+        Matcher matcher = OS_TAG_KYLINSOFT.getT3().matcher(fileContent);
+        matcher.find();
+        osVersion.append(OS_TAG_KYLINSOFT.getT2()).append("V")
+                .append(StringUtils.remove(matcher.group(1), "ky"));
+      } else if (StringUtils.containsIgnoreCase(fileContent, OS_TAG_CENTOS.getT1())) {
+        Matcher matcher = OS_TAG_CENTOS.getT3().matcher(fileContent);
+        matcher.find();
+        osVersion.append(OS_TAG_CENTOS.getT2()).append(StringUtils.remove(matcher.group(1), "el"));
+      }
+    } catch (IOException e) {
+      LOGGER.warn("read file '/proc/version' error.", e);
+      return osVersion.toString();
+    }
+
+    return osVersion.toString();
   }
 
   /**

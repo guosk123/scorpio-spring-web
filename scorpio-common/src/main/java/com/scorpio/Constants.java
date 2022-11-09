@@ -45,6 +45,9 @@ public class Constants {
 
     public static final String ENCODING_FORMAT_ISO88591 = "ISO-8859-1";
 
+    public static final String EXPORT_FILE_TYPE_CSV = "csv";
+    public static final String EXPORT_FILE_TYPE_EXCEL = "excel";
+
     /************************************************************
      *
      *************************************************************/
