@@ -1,0 +1,53 @@
+.searchTreeWrap {
+  z-index: 1;
+  width: 680px;
+  margin-right: 10px;
+}
+
+.miniBar {
+  width: 20px;
+  color: var(--font-color);
+  cursor: pointer;
+
+  .barWrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    :global {
+      .anticon {
+        margin: 4px 0;
+        font-size: 12px;
+      }
+    }
+
+    &::before {
+      border-radius: 7.5px 7.5px 0 0;
+    }
+    &::after {
+      border-radius: 0 0 7.5px 7.5px;
+    }
+
+    &::before,
+    &::after {
+      width: 8px;
+      height: 40px;
+      background-color: rgba(0, 0, 0, 0.12);
+      content: '';
+    }
+  }
+}
+
+.collapsedBtn,
+.searchInput {
+  margin-bottom: 10px;
+}
+
+:global(.dark) {
+  .barWrap {
+    &::before,
+    &::after {
+      background: rgba(255, 255, 255, 0.15);
+    }
+  }
+}

@@ -1,0 +1,71 @@
+.hexdumpWrap {
+  display: flex;
+  flex: auto;
+  flex-direction: column;
+  height: 100%;
+  overflow: auto;
+  font-family: monospace;
+
+  .emptyText {
+    line-height: 200px;
+    text-align: center;
+  }
+
+  .tabWrap {
+    flex: 0 0 auto;
+    // z-index: 1;
+    // position: sticky;
+    // top: 0;
+    margin-bottom: 10px;
+  }
+  .displayBase {
+    flex: 0 0 auto;
+    margin-bottom: 10px;
+    text-align: right;
+  }
+
+  .asciiPanel {
+    flex: auto;
+    overflow: auto;
+    color: var(--font-color);
+    font-size: 10pt;
+    line-height: 17px;
+    white-space: pre;
+
+    .hexdumpOffset {
+      display: inline-block;
+      padding: 0 3px;
+      text-align: center;
+      background: #ddd;
+    }
+
+    .asciiOffset {
+      width: auto;
+      max-width: 7em;
+      margin-right: 20px;
+    }
+    .asciiHex {
+      width: 29em;
+      margin-right: 20px;
+    }
+    .asciiText {
+      width: 10em;
+    }
+
+    .selected {
+      color: var(--font-color) !important;
+      background-color: #a7cbfd !important;
+    }
+
+    .regular_match_offset{
+      color: var(--font-color) !important;
+      background-color: #f5f103 !important;
+    }
+  }
+}
+
+:global(.dark) {
+  .hexdumpOffset {
+    background: #525252 !important;
+  }
+}

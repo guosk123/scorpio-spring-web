@@ -1,0 +1,36 @@
+.packet-header {
+  display: flex;
+  &-left {
+    display: flex;
+    flex: 1 1;
+  }
+
+  &-right {
+    margin-left: 10px;
+  }
+  &-total {
+    width: 100%;
+    color: #949494;
+    text-align: center;
+  }
+}
+.packet-filter {
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  :global {
+    .ant-card-body {
+      padding-top: 4px;
+      padding-bottom: 4px;
+    }
+  }
+}
+
+.packet-refine {
+  height: 100%;
+  padding: 4px;
+  overflow-y: auto; //BFC
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 2px;
+}

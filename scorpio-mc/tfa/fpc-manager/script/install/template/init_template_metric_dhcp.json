@@ -1,0 +1,86 @@
+{
+	"order": 0,
+	"index_patterns": ["i_fpc-metric-dhcp-data-record-*"],
+	"settings": {
+		"index": {
+			"number_of_shards": "1",
+			"number_of_replicas": "0",
+			"refresh_interval": "1s"
+		}
+	},
+	"mappings": {
+		"dynamic": false,
+		"properties": {
+			"timestamp": {
+				"type": "date",
+				"index": true,
+				"doc_values": true
+			},
+			"network_id": {
+				"type": "keyword",
+				"index": true,
+				"doc_values": true
+			},
+			"client_ip_address": {
+				"type": "ip",
+				"index": true,
+				"doc_values": true
+			},
+			"server_ip_address": {
+				"type": "ip",
+				"index": true,
+				"doc_values": true
+			},
+			"client_mac_address": {
+				"type": "keyword",
+				"index": true,
+				"doc_values": true
+			},
+			"server_mac_address": {
+				"type": "keyword",
+				"index": true,
+				"doc_values": true
+			},
+			"message_type": {
+				"type": "byte",
+				"index": true,
+				"doc_values": true
+			},
+			"dhcp_version": {
+				"type": "byte",
+				"index": true,
+				"doc_values": true
+			},
+			"total_bytes": {
+				"type": "long",
+				"index": false,
+				"doc_values": true
+			},
+			"send_bytes": {
+				"type": "long",
+				"index": false,
+				"doc_values": true
+			},
+			"receive_bytes": {
+				"type": "long",
+				"index": false,
+				"doc_values": true
+			},
+			"total_packets": {
+				"type": "long",
+				"index": false,
+				"doc_values": true
+			},
+			"send_packets": {
+				"type": "long",
+				"index": false,
+				"doc_values": true
+			},
+			"receive_packets": {
+				"type": "long",
+				"index": false,
+				"doc_values": true
+			}
+		}
+	}
+}

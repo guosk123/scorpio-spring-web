@@ -1,0 +1,55 @@
+@import '~antd/es/style/themes/default.less';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: auto;
+  background: @layout-body-background;
+}
+
+.content {
+  flex: 1;
+  padding: 32px 0;
+}
+
+.innerWrap {
+  min-width: 600px;
+  max-width: 800px;
+  margin: 0 auto !important;
+}
+
+@media (min-width: @screen-md-min) {
+  .container {
+    background-image: url('../../assets/bg.svg');
+    background-repeat: no-repeat;
+    background-position: center 110px;
+    background-size: 100%;
+  }
+
+  .content {
+    padding: 32px 0 24px 0;
+  }
+}
+.header {
+  color: var(--font-color);
+  text-align: center;
+  .productTitle {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    font-weight: 600;
+    font-size: 33px;
+    font-family: Avenir, helvetica neue, Arial, Helvetica, sans-serif;
+  }
+  .desc {
+    margin-bottom: 20px;
+    font-weight: 500;
+    font-size: 30px;
+  }
+}
+
+:global(.dark) {
+  .container {
+    background: #000 !important;
+  }
+}

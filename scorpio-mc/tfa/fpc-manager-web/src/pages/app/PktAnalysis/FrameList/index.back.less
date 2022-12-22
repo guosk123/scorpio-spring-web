@@ -1,0 +1,134 @@
+@import '~@/utils/frame/utils.less';
+
+@contentHeight: 400px;
+
+.packetList {
+  overflow-x: auto;
+
+  .emptyText {
+    height: @contentHeight;
+    line-height: 200px;
+    text-align: center;
+  }
+
+  .header {
+    height: 25px;
+    color: #000;
+    font-weight: 400;
+    font-family: monospace;
+    line-height: 25px;
+    vertical-align: middle;
+    background-color: #eee;
+    border-bottom: 1px solid var(--border-color);
+
+    .row {
+      li + li {
+        border-left: 1px solid #d8d8d8;
+      }
+    }
+  }
+
+  .row {
+    display: flex;
+    margin: 0;
+    padding: 0;
+
+    &.dataRow {
+      cursor: pointer;
+    }
+
+    &.selected {
+      color: #000 !important;
+      background-color: #a7cbfd !important;
+    }
+
+    li {
+      flex-shrink: 0;
+      height: 25px;
+      padding: 0 5px;
+      white-space: nowrap;
+
+      &:nth-child(1) {
+        width: 70px;
+      }
+      &:nth-child(2) {
+        width: 120px;
+      }
+      &:nth-child(3) {
+        width: 150px;
+      }
+      &:nth-child(4) {
+        width: 150px;
+      }
+      &:nth-child(5) {
+        width: 100px;
+      }
+      &:nth-child(6) {
+        width: 100px;
+      }
+      &:nth-child(7) {
+        flex: 0 1;
+      }
+
+      &:not(:last-child) {
+        .textOverflow();
+      }
+    }
+  }
+
+  .footer {
+    margin: 10px 0;
+    text-align: center;
+  }
+
+  table {
+    min-width: 100%;
+    max-height: 100%;
+    table-layout: fixed;
+    border-spacing: 0;
+
+    tbody {
+      height: @contentHeight;
+      overflow: auto;
+    }
+
+    th,
+    td {
+      padding: 0 7px;
+      color: inherit;
+      white-space: nowrap;
+      background-color: inherit;
+    }
+
+    td {
+      height: 22px;
+    }
+
+    th {
+      position: sticky;
+      top: 0;
+      z-index: 99;
+      height: 25px;
+      color: #000;
+      font-weight: 400;
+      font-family: monospace;
+      line-height: 25px;
+      white-space: nowrap;
+      vertical-align: middle;
+      background-color: #eee;
+      border-bottom: 1px solid var(--border-color);
+
+      & + th {
+        border-left: 1px solid var(--border-color);
+      }
+    }
+  }
+
+  .tr {
+    cursor: pointer;
+  }
+  .tr.selected {
+    color: #000 !important;
+    background-color: #a7cbfd !important;
+  }
+}

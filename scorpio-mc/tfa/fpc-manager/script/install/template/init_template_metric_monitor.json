@@ -1,0 +1,49 @@
+{
+  "order": 0,
+  "index_patterns": ["i_fpc-metric-monitor-data-record-*"],
+  "settings": {
+    "index": {
+      "number_of_shards": "1",
+      "number_of_replicas": "0",
+      "refresh_interval": "1s"
+    }
+  },
+  "mappings": {
+    "dynamic": false,
+    "properties": {
+      "timestamp": {
+        "type": "date",
+        "index": true,
+        "doc_values": true
+      },
+      "memory_used_ratio": {
+        "type": "integer",
+        "index": false,
+        "doc_values": true
+      },
+      "cpu_used_ratio": {
+        "type": "integer",
+        "index": false,
+        "doc_values": true
+      },
+      "system_fs_used_ratio": {
+        "type": "integer",
+        "index": false,
+        "doc_values": true
+      },
+      "index_fs_used_ratio": {
+        "type": "integer",
+        "index": false,
+        "doc_values": true
+      },
+      "metadata_fs_used_ratio": {
+        "type": "integer",
+        "index": false,
+        "doc_values": true
+      }
+    }
+  },
+  "aliases": {
+    "a_fpc-metric-monitor-data-record": {}
+  }
+}

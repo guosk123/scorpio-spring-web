@@ -1,0 +1,43 @@
+.filterHistoryWrap {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 5px 20px 5px 0;
+  background-color: #f9f9fa;
+  border-radius: 4px;
+
+  .tag {
+    cursor: pointer;
+  }
+  .removeTagBtn {
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: middle;
+
+    :global {
+      .anticon {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+.historyPopover {
+  width: 300px;
+  max-height: 260px;
+  overflow-y: auto;
+
+  .historyPane {
+    word-break: break-all;
+    &:not(:last-child) {
+      margin-bottom: 4px;
+      padding-bottom: 4px;
+      border-bottom: 1px dashed #c1c1c1;
+    }
+  }
+}
+
+:global(.dark) {
+  .filterHistoryWrap {
+    background-color: var(--bg-color);
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "order": 0,
+  "index_patterns": ["i_fpc-analysis-suspicious-https"],
+  "settings": {
+    "index": {
+      "number_of_shards": "1",
+      "number_of_replicas": "0",
+      "refresh_interval": "5s"
+    }
+  },
+  "mappings": {
+    "_source": {
+      "enabled": true
+    },
+    "dynamic": false,
+    "properties": {
+      "task_id": {
+        "type": "keyword",
+        "index": true,
+        "doc_values": false
+      },
+      "record_total_hit": {
+        "type": "long",
+        "index": false,
+        "doc_values": true
+      },
+      "record_id_list": {
+        "type": "keyword",
+        "index": false,
+        "doc_values": false
+      },
+	    "ja3": {
+        "type": "keyword",
+        "index": false,
+        "doc_values": false
+      }
+    }
+  }
+}

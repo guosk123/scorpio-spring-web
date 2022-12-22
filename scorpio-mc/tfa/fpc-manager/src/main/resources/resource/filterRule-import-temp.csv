@@ -1,0 +1,3 @@
+﻿`名称`,`规则`,`状态`,`备注`
+`规则3`	`[{"sourceIp":"源IP"	sourcePort:"源口段"	destIp:"目的IP"	destPort:"目的端口"	protocol:"传输层协议（UPD和TCP）"	vlanId:"VLANID"	applicationId:[(应用ID){"categoryId":"1"	subCategoryId:null	applicationId:null}	{"categoryId":"2"	subCategoryId:null	applicationId:null}]	action:"存储动作"	truncLen:存储长度}]`	`状态（1禁用，0启用）`	`备注`
+`规则3`	`[{"sourceIp":"10.0.0.1"	sourcePort:"80"	destIp:"10.0.0.2"	destPort:"90"	protocol:"UDP"	vlanId:"800"	applicationId:[{"categoryId":"1"	subCategoryId:null	applicationId:null}	{"categoryId":"2"	subCategoryId:null	applicationId:null}]	action:"truncate"	truncLen:64}]`	`0`	`备注`

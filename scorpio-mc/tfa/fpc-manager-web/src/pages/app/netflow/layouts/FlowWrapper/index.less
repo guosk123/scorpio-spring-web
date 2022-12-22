@@ -1,0 +1,25 @@
+@import '~@/utils/frame/utils.less';
+
+.layoutWrap {
+  position: relative;
+  @leftWidth: 0px;
+  .clearfix();
+
+  .leftWrap {
+    position: absolute;
+    width: @leftWidth;
+  }
+  .contentWrap {
+    float: left;
+    width: 100%;
+    padding-left: @leftWidth + 10px;
+    overflow: hidden;
+    margin: 10px;
+  }
+}
+
+.contentWrap__title{
+  color: @primary-color;
+  line-height: 28px;
+  text-align: center;
+}

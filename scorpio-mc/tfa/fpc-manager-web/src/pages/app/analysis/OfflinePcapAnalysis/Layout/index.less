@@ -1,0 +1,36 @@
+@import '~@/utils/frame/utils.less';
+
+.layoutWrap {
+  position: relative;
+  @leftWidth: 300px;
+  .clearfix();
+
+  .leftWrap {
+    position: absolute;
+    width: @leftWidth;
+  }
+  .contentWrap {
+    float: left;
+    width: 100%;
+    padding-left: @leftWidth + 10px;
+    overflow: hidden;
+  }
+
+  &.collapsed {
+    .leftWrap {
+      width: 0;
+    }
+    .contentWrap {
+      padding-left: 20px;
+    }
+  }
+
+  .name {
+    display: block;
+    max-width: 200px;
+    background-color: var(--bg-color);
+    color: var(--font-color);
+    padding: 4px 10px;
+    .textOverflow();
+  }
+}

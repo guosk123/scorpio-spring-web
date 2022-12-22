@@ -1,0 +1,19 @@
+@import '~@/utils/frame/utils.less';
+
+.layoutWrap {
+  position: relative;
+  @leftWidth: 300px;
+  .clearfix();
+
+  .leftWrap {
+    position: absolute;
+    width: @leftWidth;
+  }
+  .contentWrap {
+    float: left;
+    width: 100%;
+    padding-left: @leftWidth + 10px;
+    overflow: hidden;
+    border-bottom: 1px solid balck;
+  }
+}

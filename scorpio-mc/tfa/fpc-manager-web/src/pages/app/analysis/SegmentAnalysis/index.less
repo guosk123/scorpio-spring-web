@@ -1,0 +1,34 @@
+.wholeDisplay {
+  width: 100%;
+  // height: 400px;
+  margin-top: 20px;
+  &__displayLine{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: start;
+    &__seg {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      margin-top: 10px;
+      margin-right: 10px;
+      width: 300px;
+      height: 100%;
+      &__title{
+        text-align: center;
+        font-size: 18px;
+        // text-decoration: underline;
+        cursor: pointer;
+      }
+      &__hover{
+        color: royalblue;
+      }
+    }
+    &__emptySeg {
+      width: 300px;
+      height: 0px;
+    }
+  }
+}

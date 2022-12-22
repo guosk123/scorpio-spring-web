@@ -1,0 +1,591 @@
+{
+  "path": "/",
+  "component": "../layouts/BasicLayout",
+  "authority": ["PERM_SYS_USER", "PERM_USER"],
+  "routes": [
+    { "path": "/", "redirect": "/redirect" },
+    {
+      "path": "/redirect",
+      "name": "home",
+      "hideInMenu": true,
+      "component": "./Redirect"
+    },
+    {
+      "path": "/home",
+      "name": "home",
+      "title": "概览",
+      "icon": "dashboard",
+      "Routes": ["src/pages/frame/Authorized"],
+      "authority": ["PERM_USER"],
+      "component": "./app/Home"
+    },
+    {
+      "path": "/appliance/flow-record/:flowPacketId/analysis",
+      "name": "flow-analysis",
+      "title": "报文分析",
+      "hideInMenu": true,
+      "Routes": ["src/pages/frame/Authorized"],
+      "authority": ["PERM_USER"],
+      "component": "./app/tfa/Appliance/FlowRecord-Next/Analyse"
+    },
+    {
+      "path": "/appliance/detection/transmit-task/:taskId/analysis",
+      "name": "flow-analysis",
+      "title": "报文分析",
+      "icon": "stock",
+      "hideInMenu": true,
+      "Routes": ["src/pages/frame/Authorized"],
+      "authority": ["PERM_USER"],
+      "component": "./app/PktAnalysis"
+    },
+    {
+      "path": "/appliance",
+      "name": "appliance",
+      "icon": "database",
+      "title": " 数据分析",
+      "Routes": ["src/pages/frame/Authorized"],
+      "authority": ["PERM_USER"],
+      "component": "./app/fpc/Appliance/Layout",
+      "hideChildrenInMenu": true,
+      "routes": [
+        {
+          "path": "/appliance",
+          "redirect": "/appliance/analysis/device-netif"
+        },
+        {
+          "path": "/appliance/analysis/:metric",
+          "name": "analysis",
+          "title": "统计分析",
+          "Routes": ["src/pages/frame/Authorized"],
+          "component": "./app/tfa/Appliance/Analysis"
+        },
+        {
+          "path": "/appliance/flow-record",
+          "name": "flow-record",
+          "title": "流日志查询",
+          "Routes": ["src/pages/frame/Authorized"],
+          "component": "./app/tfa/Appliance/FlowRecord-Next-Next/Record"
+        },
+        {
+          "path": "/appliance/flow-record/slim",
+          "name": "flow-record",
+          "title": "流日志查询",
+          "Routes": ["src/pages/frame/Authorized"],
+          "component": "./app/tfa/Appliance/FlowRecord-Next/SlimFlowRecord"
+        },
+        {
+          "path": "/appliance/flow-record/ip-aggregation",
+          "name": "flow-record.ip-aggregation",
+          "title": "IP日志查询",
+          "Routes": ["src/pages/frame/Authorized"],
+          "component": "./app/tfa/Appliance/FlowRecord-Next/IpAggregation"
+        },
+        {
+          "path": "/appliance/metadata/:protocol",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "metadata-protocol",
+          "title": "元数据",
+          "component": "./app/tfa/Appliance/Metadata"
+        },
+        {
+          "path": "/appliance/detection/transmit-task",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "transmit-task",
+          "title": "查询任务",
+          "component": "./app/fpc/Appliance/TransmitTask"
+        },
+        {
+          "path": "/appliance/detection/transmit-task/create",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "transmit-task-create",
+          "title": "新建任务",
+          "component": "./app/fpc/Appliance/TransmitTask/Form"
+        },
+        {
+          "path": "/appliance/detection/transmit-task/update",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "transmit-task-update",
+          "title": "修改任务",
+          "component": "./app/fpc/Appliance/TransmitTask/Form"
+        },
+        {
+          "path": "/appliance/detection/transmit-task/copy",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "transmit-task-copy",
+          "title": "复制任务",
+          "component": "./app/fpc/Appliance/TransmitTask/Form"
+        },
+        {
+          "path": "/appliance/detection/scenario-task",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "scenario-task",
+          "title": "分析任务",
+          "component": "./app/tfa/Appliance/ScenarioTask"
+        },
+        {
+          "path": "/appliance/detection/scenario-task/create",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "scenario-task.create",
+          "title": "新建分析任务",
+          "component": "./app/tfa/Appliance/ScenarioTask/Create"
+        },
+        {
+          "path": "/appliance/detection/scenario-task/result",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "scenario-task.result",
+          "title": "分析任务结果",
+          "component": "./app/tfa/Appliance/ScenarioTask/Result"
+        },
+        {
+          "path": "/appliance/detection/scenario-task/result/metadata-dns",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "scenario-task.result.metadata-dns",
+          "title": "DNS元数据",
+          "component": "./app//tfa/Appliance/ScenarioTask/Result/DNSDetail"
+        },
+        {
+          "path": "/appliance/detection/scenario-task/result/metadata-http",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "scenario-task.result.metadata-http",
+          "title": "HTTP元数据",
+          "component": "./app//tfa/Appliance/ScenarioTask/Result/HttpDetail"
+        },
+        {
+          "path": "/appliance/detection/scenario-task/result/metadata-ssl",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "scenario-task.result.metadata-ssl",
+          "title": "SSL元数据",
+          "component": "./app//tfa/Appliance/ScenarioTask/Result/SSLDetail"
+        },
+        {
+          "path": "/appliance/detection/scenario-task/result/metadata-ftp",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "scenario-task.result.metadata-ftp",
+          "title": "FTP元数据",
+          "component": "./app//tfa/Appliance/ScenarioTask/Result/FTPDetail"
+        },
+        {
+          "path": "/appliance/detection/scenario-task/result/metadata-mail",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "scenario-task.result.metadata-mail",
+          "title": "MAIL元数据",
+          "component": "./app//tfa/Appliance/ScenarioTask/Result/MailDetail"
+        },
+        {
+          "path": "/appliance/detection/scenario-task/result/metadata-telnet",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "scenario-task.result.metadata-telnet",
+          "title": "TELNET元数据",
+          "component": "./app//tfa/Appliance/ScenarioTask/Result/TelnetDetail"
+        },
+        {
+          "path": "/appliance/detection/scenario-task/result/flow-record",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "scenario-task.result.flow-record",
+          "title": "流日志",
+          "component": "./app/tfa/Appliance/FlowRecord-Next/SlimFlowRecord"
+        }
+      ]
+    },
+    {
+      "path": "/configuration",
+      "name": "configuration",
+      "icon": "database",
+      "title": "业务配置",
+      "Routes": ["src/pages/frame/Authorized"],
+      "authority": ["PERM_USER"],
+      "component": "./app/fpc/Configuration/Layout",
+      "hideChildrenInMenu": true,
+      "routes": [
+        {
+          "path": "/configuration",
+          "redirect": "/configuration/ingest-policy"
+        },
+        {
+          "path": "/configuration/ingest-policy",
+          "name": "ingest-policy",
+          "title": "捕获过滤",
+          "Routes": ["src/pages/frame/Authorized"],
+          "component": "./app/fpc/Configuration/IngestPolicy"
+        },
+        {
+          "path": "/configuration/application-policy",
+          "name": "application-policy",
+          "title": "应用过滤",
+          "Routes": ["src/pages/frame/Authorized"],
+          "component": "./app/tfa/Configuration/ApplicationPolicy"
+        },
+        {
+          "path": "/configuration/device-netif",
+          "name": "device-netif",
+          "title": "业务接口",
+          "Routes": ["src/pages/frame/Authorized"],
+          "component": "./app/fpc/Configuration/DeviceNetif"
+        },
+        {
+          "path": "/configuration/storage-policy",
+          "name": "storage-policy",
+          "title": "存储配置",
+          "Routes": ["src/pages/frame/Authorized"],
+          "component": "./app/fpc/Configuration/StoragePolicy"
+        },
+        {
+          "path": "/configuration/metadata/collect-policy",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "metadata.collect-policy",
+          "title": "采集策略",
+          "component": "./app/tfa/Configuration/MetadataCollectPolicy"
+        },
+        {
+          "path": "/configuration/metadata/collect-policy/create",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "metadata.collect-policy.create",
+          "title": "采集策略",
+          "component": "./app/tfa/Configuration/MetadataCollectPolicy/Create"
+        },
+        {
+          "path": "/configuration/metadata/collect-policy/update",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "metadata.collect-policy.update",
+          "title": "采集策略",
+          "component": "./app/tfa/Configuration/MetadataCollectPolicy/Update"
+        },
+        {
+          "path": "/configuration/metadata/receiver-policy",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "metadata.receiver-policy",
+          "title": "发送配置",
+          "component": "./app/tfa/Configuration/MetadataReceiverPolicy"
+        },
+        {
+          "path": "/configuration/device-netif",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "device-netif",
+          "title": "业务接口",
+          "component": "./app/fpc/Configuration/DeviceNetif"
+        },
+        {
+          "path": "/configuration/ip-address-group",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "ip-address-group",
+          "title": "IP地址组",
+          "component": "./app/fpc/Configuration/IpAddressGroup"
+        },
+        {
+          "path": "/configuration/ip-address-group/create",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "ip-address-group.create",
+          "title": "新建IP地址组",
+          "component": "./app/fpc/Configuration/IpAddressGroup/Create"
+        },
+        {
+          "path": "/configuration/ip-address-group/update",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "ip-address-group.update",
+          "title": "编辑IP地址组",
+          "component": "./app/fpc/Configuration/IpAddressGroup/Update"
+        },
+        {
+          "path": "/configuration/standard-protocol",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "standard-protocol",
+          "title": "协议端口",
+          "component": "./app/tfa/Configuration/StandardProtocol"
+        },
+        {
+          "path": "/configuration/standard-protocol/create",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "standard-protocol.create",
+          "title": "新建协议端口",
+          "component": "./app/tfa/Configuration/StandardProtocol/Create"
+        },
+        {
+          "path": "/configuration/standard-protocol/update",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "standard-protocol.update",
+          "title": "编辑协议端口",
+          "component": "./app/tfa/Configuration/StandardProtocol/Update"
+        },
+        {
+          "path": "/configuration/threat-intelligence",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "threat-intelligence",
+          "title": "威胁情报导入",
+          "component": "./app/tfa/Configuration/ThreatIntelligence"
+        },
+        {
+          "path": "/configuration/threat-intelligence/update",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "threat-intelligence.update",
+          "title": "威胁情报导入",
+          "component": "./app/tfa/Configuration/ThreatIntelligence/Update"
+        },
+        {
+          "path": "/configuration/tls-decrypt-setting",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "tls-decrypt-setting",
+          "title": "TLS协议私钥配置",
+          "component": "./app/tfa/Configuration/TlsDecryptSetting"
+        },
+        {
+          "path": "/configuration/tls-decrypt-setting/create",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "tls-decrypt-setting.create",
+          "title": "新建TLS协议私钥配置",
+          "component": "./app/tfa/Configuration/TlsDecryptSetting/Create"
+        },
+        {
+          "path": "/configuration/tls-decrypt-setting/update",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "tls-decrypt-setting.update",
+          "title": "编辑TLS协议私钥配置",
+          "component": "./app/tfa/Configuration/TlsDecryptSetting/Update"
+        },
+        {
+          "path": "/configuration/sa-knowledge/import",
+          "name": "sa-knowledge",
+          "title": "SA规则库导入",
+          "Routes": ["src/pages/frame/Authorized"],
+          "component": "./app/tfa/Configuration/SAKnowledge"
+        },
+        {
+          "path": "/configuration/application",
+          "name": "application",
+          "title": "应用管理",
+          "Routes": ["src/pages/frame/Authorized"],
+          "component": "./app/tfa/Configuration/CustomApplication"
+        },
+        {
+          "path": "/configuration/application/create",
+          "name": "application",
+          "title": "新建自定义应用",
+          "Routes": ["src/pages/frame/Authorized"],
+          "component": "./app/tfa/Configuration/CustomApplication/Create"
+        },
+        {
+          "path": "/configuration/application/update",
+          "name": "application",
+          "title": "编辑自定义应用",
+          "Routes": ["src/pages/frame/Authorized"],
+          "component": "./app/tfa/Configuration/CustomApplication/Update"
+        },
+        {
+          "path": "/configuration/detection/scenario-task-template",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "scenario-task-template",
+          "title": "自定义分析模板",
+          "component": "./app/tfa/Appliance/ScenarioTask/Template"
+        },
+        {
+          "path": "/configuration/detection/scenario-task-template/create",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "scenario-task-template.create",
+          "title": "自定义分析模板",
+          "component": "./app/tfa/Appliance/ScenarioTask/Template/Create"
+        }
+      ]
+    },
+    {
+      "path": "/system",
+      "icon": "setting",
+      "name": "system",
+      "title": "系统管理",
+      "component": "./app/System/Layout",
+      "hideChildrenInMenu": true,
+      "Routes": ["src/pages/frame/Authorized"],
+      "authority": ["PERM_SYS_USER", "PERM_AUDIT_USER"],
+      "routes": [
+        {
+          "path": "/system",
+          "Routes": ["src/pages/frame/Authorized"],
+          "component": "./frame/System"
+        },
+        {
+          "path": "/system/server-ip",
+          "name": "server-ip",
+          "title": "系统管理-管理口配置",
+          "Routes": ["src/pages/frame/Authorized"],
+          "authority": ["PERM_SYS_USER"],
+          "component": "./frame/System/ServerIp"
+        },
+        {
+          "path": "/system/monitor",
+          "name": "monitor",
+          "title": "运行状态",
+          "Routes": ["src/pages/frame/Authorized"],
+          "authority": ["PERM_SYS_USER"],
+          "component": "./app/System/Monitor"
+        },
+        {
+          "path": "/system/device-disk",
+          "name": "device-disk",
+          "title": "RAID状态",
+          "Routes": ["src/pages/frame/Authorized"],
+          "authority": ["PERM_SYS_USER"],
+          "component": "./app/System/DeviceDisk"
+        },
+        {
+          "path": "/system/device-ntp",
+          "name": "device-ntp",
+          "title": "系统时间",
+          "Routes": ["src/pages/frame/Authorized"],
+          "authority": ["PERM_SYS_USER"],
+          "component": "./frame/System/DeviceNTP"
+        },
+        {
+          "path": "/system/log",
+          "name": "log",
+          "title": "日志",
+          "Routes": ["src/pages/frame/Authorized"],
+          "component": "./frame/System/Log"
+        },
+        {
+          "path": "/system/alarm",
+          "name": "alarm",
+          "title": "告警",
+          "Routes": ["src/pages/frame/Authorized"],
+          "authority": ["PERM_SYS_USER"],
+          "component": "./frame/System/Alarm"
+        },
+        {
+          "path": "/system/alarm/detail",
+          "name": "alarm-detail",
+          "title": "告警详情",
+          "hideInMenu": true,
+          "Routes": ["src/pages/frame/Authorized"],
+          "authority": ["PERM_SYS_USER"],
+          "component": "./frame/System/Alarm/Detail"
+        },
+        {
+          "path": "/system/user",
+          "name": "user",
+          "title": "用户管理",
+          "Routes": ["src/pages/frame/Authorized"],
+          "authority": ["PERM_SYS_USER"],
+          "component": "./frame/System/User"
+        },
+        {
+          "path": "/system/user/create",
+          "name": "create-user",
+          "title": "新建用户",
+          "Routes": ["src/pages/frame/Authorized"],
+          "authority": ["PERM_SYS_USER"],
+          "hideInMenu": true,
+          "component": "./frame/System/User/Create"
+        },
+        {
+          "path": "/system/user/update",
+          "name": "update-user",
+          "title": "编辑用户",
+          "Routes": ["src/pages/frame/Authorized"],
+          "authority": ["PERM_SYS_USER"],
+          "hideInMenu": true,
+          "component": "./frame/System/User/Update"
+        },
+        {
+          "path": "/system/role",
+          "name": "role",
+          "title": "角色管理",
+          "Routes": ["src/pages/frame/Authorized"],
+          "authority": ["PERM_SYS_USER"],
+          "hideInMenu": true,
+          "component": "./frame/System/User/Role"
+        },
+        {
+          "path": "/system/archive",
+          "name": "archive",
+          "title": "归档备份",
+          "Routes": ["src/pages/frame/Authorized"],
+          "authority": ["PERM_SYS_USER"],
+          "component": "./frame/System/Archive"
+        },
+        {
+          "path": "/system/security",
+          "name": "security",
+          "title": "安全配置",
+          "Routes": ["src/pages/frame/Authorized"],
+          "authority": ["PERM_SYS_USER"],
+          "component": "./frame/System/Security"
+        },
+        {
+          "path": "/system/license",
+          "name": "license",
+          "title": "License管理",
+          "Routes": ["src/pages/frame/Authorized"],
+          "authority": ["PERM_SYS_USER"],
+          "component": "./app/System/License"
+        },
+        {
+          "path": "/system/sso",
+          "name": "sso",
+          "icon": "",
+          "title": "单点登录",
+          "Routes": ["src/pages/frame/Authorized"],
+          "authority": ["PERM_SYS_USER"],
+          "routes": [
+            {
+              "path": "/system/sso/platform",
+              "name": "platform",
+              "title": "外部系统配置",
+              "Routes": ["src/pages/frame/Authorized"],
+              "component": "./frame/Sso/Platform"
+            },
+            {
+              "path": "/system/sso/platform/create",
+              "name": "platform.create",
+              "title": "新建外部系统",
+              "Routes": ["src/pages/frame/Authorized"],
+              "authority": ["PERM_SYS_USER"],
+              "component": "./frame/Sso/Platform/Create"
+            },
+            {
+              "path": "/system/sso/platform/update",
+              "name": "platform.update",
+              "title": "编辑外部系统",
+              "Routes": ["src/pages/frame/Authorized"],
+              "authority": ["PERM_SYS_USER"],
+              "component": "./frame/Sso/Platform/Update"
+            },
+            {
+              "path": "/system/sso/user",
+              "name": "user",
+              "title": "用户关联",
+              "Routes": ["src/pages/frame/Authorized"],
+              "authority": ["PERM_SYS_USER"],
+              "component": "./frame/Sso/User"
+            },
+            {
+              "path": "/system/sso/user/create",
+              "name": "user.create",
+              "title": "新建用户关联",
+              "Routes": ["src/pages/frame/Authorized"],
+              "authority": ["PERM_SYS_USER"],
+              "component": "./frame/Sso/User/Create"
+            },
+            {
+              "path": "/system/sso/user/update",
+              "name": "user.update",
+              "title": "编辑用户关联",
+              "Routes": ["src/pages/frame/Authorized"],
+              "authority": ["PERM_SYS_USER"],
+              "component": "./frame/Sso/User/Update"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/restapi",
+      "name": "restapi",
+      "title": "RESTAPI用户",
+      "icon": "api",
+      "hideInMenu": true,
+      "Routes": ["src/pages/frame/Authorized"],
+      "authority": ["PERM_RESTAPI_USER"],
+      "component": "./frame/RestAPI"
+    },
+    {
+      "component": "./frame/Exception/404"
+    }
+  ]
+}

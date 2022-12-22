@@ -1,0 +1,13 @@
+{
+  "ip_initiator": { "x": 0, "y": 0, "h": 8, "w": 4 },
+  "ip_responder": { "x": 0, "y": 8, "h": 8, "w": 4 },
+  "port_initiator": { "x": 4, "y": 0, "h": 8, "w": 4 },
+  "port_responder": { "x": 4, "y": 8, "h": 8, "w": 4 },
+  "ip_dest": { "x": 8, "y": 0, "h": 8, "w": 4 },
+  "ip_src": { "x": 0, "y": 32, "h": 8, "w": 4 },
+  "country_initiator": { "x": 0, "y": 16, "h": 8, "w": 4 },
+  "country_responder": { "x": 0, "y": 24, "h": 8, "w": 4 },
+  "security_alert": { "x": 8, "y": 8, "h": 8, "w": 4 },
+  "applications": { "x": 0, "y": 41.2, "h": 5.2, "w": 12 },
+  "locations": { "x": 0, "y": 47.2, "h": 5.2, "w": 12 }
+}
