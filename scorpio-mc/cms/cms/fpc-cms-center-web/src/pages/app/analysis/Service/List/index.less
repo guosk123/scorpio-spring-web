@@ -1,0 +1,109 @@
+.stat {
+  width: 100%;
+  &__top {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    height: 135px;
+    padding: 12px 24px 0 12px;
+    // height: 120px;
+    // padding: 12px 12px 0;
+
+    &__left {
+      width: 40%;
+      text-align: center;
+
+      &__title {
+        margin-bottom: 4px;
+      }
+    }
+    &__right {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: center;
+      flex: 1 1;
+      overflow-y: auto;
+    }
+  }
+
+  &__footer {
+    margin-top: 10px;
+    &__alarm {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      height: 40px;
+      padding: 0 12px 10px;
+      &__alarmbox {
+        width: 15px;
+        height: 20px;
+        background-color: #cc0000;
+        border-radius: 3px;
+        &__tip {
+          color: red;
+          opacity: 0.5;
+        }
+      }
+      &__noalarmbox {
+        width: 15px;
+        height: 20px;
+        background-color: #dcdcdc;
+        border-radius: 3px;
+      }
+      &__green {
+        width: 15px;
+        height: 20px;
+        background-color: #16982b;
+        border-radius: 3px;
+      }
+    }
+  }
+}
+
+.star {
+  color: #f0f0f0;
+  font-size: 20px;
+
+  &--full {
+    color: #fadb14 !important;
+  }
+}
+
+.list {
+  :global {
+    .ant-list-item-meta-avatar {
+      // display: none !important;
+    }
+    .ant-pro-card-header {
+      padding: 6px 12px !important;
+      // border-bottom: 1px solid var(--border-color);
+    }
+    .ant-pro-card-title {
+      font-size: 18px !important;
+    }
+    .ant-pro-card-body {
+      padding: 0 !important;
+      padding-top: 0 !important;
+    }
+    .ant-pro-table-search {
+      margin-bottom: 0 !important;
+    }
+    .ant-card-body {
+      padding: 0;
+    }
+    .ant-list .ant-row > * {
+      width: 365px !important;
+    }
+    .ant-pro-list-row-card {
+      width: 360px;
+      margin-top: 0;
+      padding: 0 4px;
+    }
+    .ant-pro-card {
+      background-color: var(--bg-color);
+    }
+  }
+}

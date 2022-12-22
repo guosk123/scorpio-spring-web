@@ -1,0 +1,83 @@
+@import '~antd/es/style/themes/default.less';
+
+.uploadWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  :global {
+    .ant-upload-picture-card-wrapper {
+      width: auto;
+    }
+    .ant-upload.ant-upload-select-picture-card {
+      width: 300px !important;
+      margin: 0;
+    }
+  }
+  .uploadIcon {
+    font-size: 30px;
+  }
+  .uploadText {
+    font-weight: bold;
+  }
+
+  .warningInfoWrap {
+    ul {
+      margin-bottom: 0;
+      margin-left: 4px;
+      list-style: circle;
+    }
+  }
+}
+
+.meta {
+  width: 60%;
+  margin: 50px auto 0;
+  .left {
+    :global {
+      .ant-statistic-content-value {
+        font-size: 16px !important;
+      }
+      .ant-descriptions-item {
+        height: 45px;
+      }
+    }
+
+    .normal,
+    .warning {
+      font-size: 16px;
+    }
+
+    .normal {
+      color: @success-color;
+    }
+    .warning {
+      color: @error-color;
+    }
+  }
+  .right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    text-align: center;
+
+    p {
+      margin-top: 10px;
+      margin-bottom: 0;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    img {
+      width: 100px;
+    }
+  }
+}
+
+.empty {
+  width: 100%;
+  margin-top: 20px;
+  color: red;
+  font-size: 16px;
+  text-align: center;
+}

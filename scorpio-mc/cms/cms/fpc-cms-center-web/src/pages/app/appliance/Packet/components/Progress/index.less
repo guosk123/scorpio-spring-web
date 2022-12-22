@@ -1,0 +1,95 @@
+.progress {
+  &-status {
+    margin-right: 10px;
+  }
+  &-pane {
+    flex: 1;
+    flex-direction: row-reverse;
+  }
+  &-header {
+    padding: 5px 0;
+    color: #c0c0c0;
+    font-weight: 700;
+    font-size: 16px;
+  }
+  &-bar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 20px;
+    margin-bottom: 4px;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0);
+    &_track {
+      position: absolute;
+      right: 0%;
+      left: 0%;
+      height: 20px;
+      background-color: rgb(87, 87, 87);
+    }
+    &_box {
+      position: absolute;
+      height: 12px;
+    }
+    &_refine {
+      position: absolute;
+      width: 100%;
+      height: 12px;
+      margin: 0 2px;
+      background-color: #44ddd8;
+      -moz-animation: progress-bar_refine 2s ease-out;
+      -webkit-animation: progress-bar_refine 2s ease-out;
+      animation: progress-bar_refine 2s ease-out;
+    }
+    &_list {
+      position: absolute;
+      height: 20px;
+      border: 1px solid;
+      border-color: rgb(182, 182, 182);
+    }
+  }
+  &-time {
+    &_label_left {
+      float: left;
+      color: #949494;
+    }
+    &_label_right {
+      float: right;
+      color: #949494;
+    }
+    &_label_left_tick {
+      height: 6px;
+      border-color: #949494;
+      border-left: 1px solid;
+    }
+    &_label_right_tick {
+      height: 6px;
+      border-color: #949494;
+      border-right: 1px solid;
+    }
+  }
+}
+@keyframes progress-bar_refine {
+  0% {
+    width: 0px;
+  }
+  100% {
+    width: 100%;
+  }
+}
+@-moz-keyframes progress-bar_refine {
+  0% {
+    width: 0px;
+  }
+  100% {
+    width: 100%;
+  }
+}
+@-webkit-keyframes progress-bar_refine {
+  0% {
+    width: 0px;
+  }
+  100% {
+    width: 100%;
+  }
+}

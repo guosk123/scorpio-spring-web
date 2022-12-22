@@ -1,0 +1,60 @@
+@import '~@/utils/frame/utils.less';
+
+.categoryCard {
+  :global {
+    .ant-card-body {
+      max-height: 400px;
+      overflow-y: scroll;
+    }
+  }
+}
+.categoryCheckbox {
+  width: 100%;
+  height: 26px;
+
+  span + span {
+    display: inline-block;
+    width: ~'calc(100% - 30px)';
+    vertical-align: bottom;
+    .textOverflow();
+  }
+}
+
+.radioGroup {
+  min-height: auto !important;
+  :global {
+    .ant-legacy-form-item-control {
+      line-height: 24px;
+    }
+  }
+}
+
+.operateWrap {
+  margin-top: 10px;
+  text-align: center;
+  :global {
+    .ant-btn {
+      margin-right: 10px;
+    }
+  }
+}
+
+.searchWrap {
+  text-align: right;
+  :global {
+    .ant-legacy-form-item {
+      display: inline-block;
+    }
+    .ant-legacy-form-item-control {
+      text-align: left;
+    }
+  }
+}
+
+.extra {
+  :global {
+    .ant-form-item-label > label {
+      height: 40px;
+    }
+  }
+}

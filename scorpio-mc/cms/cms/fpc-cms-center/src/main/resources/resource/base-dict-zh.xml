@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dict-definition>
+
+	<dict key="system_component" label="cms组件">
+		<item key="000000" label="Common"></item>
+		<item key="001001" label="FPCManager"></item>
+		<item key="001002" label="FPCEngine"></item>
+		<item key="001003" label="FPCCenter"></item>
+		<item key="001004" label="SYSMonitor"></item>
+	</dict>
+
+	<dict key="system_alarm_level" label="告警级别">
+		<item key="0" label="提示"></item>
+		<item key="1" label="一般"></item>
+		<item key="2" label="重要"></item>
+		<item key="3" label="紧急"></item>
+	</dict>
+
+	<dict key="system_log_level" label="日志级别">
+		<item key="0" label="调试"></item>
+		<item key="1" label="通知"></item>
+		<item key="2" label="告警"></item>
+		<item key="3" label="错误"></item>
+		<item key="4" label="致命"></item>
+	</dict>
+
+	<dict key="system_log_category" label="日志类型">
+		<item key="1" label="运行"></item>
+		<item key="101" label="审计"></item>
+		<item key="102" label="日志告警归档"></item>
+		<item key="103" label="系统备份"></item>
+	</dict>
+
+	<dict key="alarm_category_001001" label="FPCManager告警分类">
+		<item key="001" label="服务器资源异常告警"></item>
+		<item key="101" label="日志告警归档异常告警"></item>
+		<item key="102" label="系统备份异常告警"></item>
+	</dict>
+
+	<dict key="alarm_category_001003" label="FPCCenter告警分类">
+		<item key="001" label="服务器资源异常告警"></item>
+		<item key="101" label="日志告警归档异常告警"></item>
+		<item key="102" label="系统备份异常告警"></item>
+	</dict>
+
+	<dict key="device_netif_category" label="业务接口类型">
+		<item key="0" label="管理"></item>
+		<item key="1" label="流量接收"></item>
+		<item key="2" label="流量重放"></item>
+		<item key="3" label="Netflow"></item>
+		<item key="" label="默认"></item>
+	</dict>
+
+	<dict key="device_raid_state" label="RAID状态">
+		<item key="0" label="正常"></item>
+		<item key="1" label="部分降级"></item>
+		<item key="2" label="降级"></item>
+		<item key="3" label="离线"></item>
+		<item key="4" label="故障"></item>
+	</dict>
+
+	<dict key="device_disk_state" label="磁盘状态">
+		<item key="0" label="在线"></item>
+		<item key="1" label="热备"></item>
+		<item key="2" label="重建"></item>
+		<item key="3" label="可配置"></item>
+		<item key="4" label="不可配置"></item>
+		<item key="5" label="回拷"></item>
+		<item key="6" label="失败"></item>
+		<item key="7" label="错误"></item>
+	</dict>
+
+	<dict key="device_disk_medium" label="磁盘介质">
+		<item key="0" label="HDD"></item>
+		<item key="1" label="SSD"></item>
+		<item key="2" label="未知"></item>
+	</dict>
+
+	<dict key="device_license_state" label="license状态">
+		<item key="0" label="正常"></item>
+		<item key="1" label="异常"></item>
+	</dict>
+
+	<dict key="device_connect_state" label="设备连接状态">
+		<item key="0" label="连接正常"></item>
+		<item key="1" label="连接异常"></item>
+	</dict>
+
+	<!-- 下发字典 -->
+	<dict key="appliance_ingest_action" label="流量过滤策略">
+		<item key="0" label="存储"></item>
+		<item key="1" label="不存储"></item>
+	</dict>
+
+	<dict key="appliance_ingest_repeat" label="流量过滤策略">
+		<item key="0" label="去重"></item>
+		<item key="1" label="不去重"></item>
+	</dict>
+
+	<dict key="appliance_storage_compress" label="流量存储压缩">
+		<item key="0" label="压缩"></item>
+		<item key="1" label="不压缩"></item>
+	</dict>
+
+	<dict key="appliance_storage_encrypt" label="流量存储加密">
+		<item key="0" label="加密"></item>
+		<item key="1" label="不加密"></item>
+	</dict>
+
+	<dict key="appliance_storage_encrypt_algorithm" label="流量存储加密算法">
+		<item key="SM4_ECB" label="SM4_ECB"></item>
+		<item key="SM4_CBC" label="SM4_CBC"></item>
+		<item key="AES_128_ECB" label="AES_128_ECB"></item>
+		<item key="AES_128_CBC" label="AES_128_CBC"></item>
+		<item key="AES_192_ECB" label="AES_192_ECB"></item>
+		<item key="AES_192_CBC" label="AES_192_CBC"></item>
+		<item key="AES_256_ECB" label="AES_256_ECB"></item>
+		<item key="AES_256_CBC" label="AES_256_CBC"></item>
+	</dict>
+
+	<dict key="appliance_transmit_mode" label="流量导出模式">
+		<item key="0" label="文件"></item>
+		<item key="1" label="重放"></item>
+	</dict>
+
+	<dict key="appliance_transmit_rateunit" label="流量导出速率单位">
+		<item key="0" label="Kbps"></item>
+		<item key="1" label="pps"></item>
+	</dict>
+
+	<dict key="appliance_transmit_forward_policy" label="流量转发策略">
+		<item key="0" label="先存储，再转发"></item>
+		<item key="1" label="不存储，直接转发"></item>
+	</dict>
+
+	<dict key="appliance_transmit_filter_type" label="过滤条件类型">
+		<item key="0" label="规则条件"></item>
+		<item key="1" label="BPF"></item>
+		<item key="2" label="混合条件"></item>
+	</dict>
+
+	<dict key="appliance_subnet_type" label="子网类型">
+		<item key="ip" label="IP子网络"></item>
+		<item key="mac" label="MAC子网络"></item>
+		<item key="vlan" label="VLAN子网络"></item>
+		<item key="mpls" label="MPLS子网络"></item>
+		<item key="gre" label="GRE子网络"></item>
+		<item key="vxlan" label="VXLAN子网络"></item>
+	</dict>
+
+	<dict key="appliance_alert_rule_category" label="业务告警分类">
+		<item key="threshold" label="阈值告警"></item>
+		<item key="trend" label="基线告警"></item>
+		<item key="advanced" label="组合告警"></item>
+	</dict>
+
+	<dict key="appliance_alert_rule_source" label="业务告警维度">
+		<item key="network" label="网络"></item>
+		<item key="service" label="业务"></item>
+		<item key="ipAddress" label="IP地址"></item>
+		<item key="hostGroup" label="IP地址组"></item>
+		<item key="application" label="应用"></item>
+		<item key="location" label="地区"></item>
+	</dict>
+
+	<dict key="appliance_alert_rule_metric" label="业务告警指标">
+		<item key="total_bytes" label="流量大小"></item>
+		<item key="total_packets" label="数据包数量"></item>
+		<item key="established_sessions" label="总新建会话数"></item>
+		<item key="established_tcp_sessions" label="TCP新建会话数"></item>
+		<item key="concurrent_tcp_sessions" label="TCP并发连接数"></item>
+		<item key="tcp_syn_packets" label="TCP同步包数量"></item>
+		<item key="tcp_syn_ack_packets" label="TCP同步确认包数量"></item>
+		<item key="tcp_syn_rst_packets" label="TCP同步重置包数量"></item>
+		<item key="tcp_zero_window_packets" label="TCP零窗口包数"></item>
+		<item key="tcp_established_success_counts" label="TCP建连成功次数"></item>
+		<item key="tcp_established_fail_counts" label="TCP建连失败次数"></item>
+		<item key="tcp_client_network_latency_avg" label="客户端平均网络时延（ms）"></item>
+		<item key="tcp_server_network_latency_avg" label="服务器平均网络时延（ms）"></item>
+		<item key="server_response_latency_avg" label="服务器平均响应时延（ms）"></item>
+		<item key="broadcast_packets" label="广播包数"></item>
+	</dict>
+
+	<dict key="appliance_alert_rule_calculation_type" label="业务告警计算方法">
+		<item key="TOTAL" label="计数"></item>
+		<item key="MIN" label="最小"></item>
+		<item key="MAX" label="最大"></item>
+		<item key="MEAN" label="均值"></item>
+		<item key="25PCT" label="25分位数"></item>
+		<item key="MEDIAN" label="中位数"></item>
+		<item key="75PCT" label="75分位数"></item>
+		<item key="95PCT" label="95分位数"></item>
+		<item key="STDEV" label="标准差"></item>
+	</dict>
+
+	<dict key="appliance_trend_weighting_model" label="基线权重模型">
+		<item key="MIN" label="最小"></item>
+		<item key="MEAN" label="均值"></item>
+		<item key="MEDIAN" label="中位数"></item>
+		<item key="MAX" label="最大"></item>
+	</dict>
+
+	<dict key="appliance_alert_rule_refire_type" label="业务告警周期">
+		<item key="none" label="不告警"></item>
+		<item key="once" label="只告警一次"></item>
+		<item key="repeatedly" label="周期性告警"></item>
+	</dict>
+
+	<dict key="appliance_alert_rule_window_model" label="业务告警基线窗口">
+		<item key="hour_of_day" label="相同小时天同比"></item>
+		<item key="hour_of_week" label="相同小时周同比"></item>
+		<item key="last_n_minutes" label="分钟环比"></item>
+		<item key="last_n_hours" label="小时环比"></item>
+	</dict>
+
+	<dict key="appliance_metric_setting" label="统计指标设定">
+		<item key="server_response_normal" label="正常响应时间"></item>
+		<item key="server_response_timeout" label="超时响应时间"></item>
+		<item key="long_connection" label="长连接认定时间"></item>
+	</dict>
+
+	<dict key="analysis_standard_protocol_source" label="协议端口配置来源">
+		<item key="0" label="系统内置"></item>
+		<item key="1" label="手工配置"></item>
+	</dict>
+
+	<dict key="analysis_threat_intelligence_type" label="威胁情报类型">
+		<item key="domain" label="域名"></item>
+		<item key="ip" label="IP"></item>
+		<item key="ja3" label="JA3"></item>
+	</dict>
+
+	<dict key="analysis_scenario_task_type" label="场景分析任务类型">
+		<item key="beacon-detection" label="Beacon"></item>
+		<item key="dynamic-domain" label="动态域名"></item>
+		<item key="intelligence-ip" label="IP情报"></item>
+		<item key="nonstandard-protocol" label="非标准协议"></item>
+		<item key="suspicious-https" label="可疑https"></item>
+		<item key="brute-force-ssh" label="SSH爆破"></item>
+		<item key="brute-force-rdp" label="RDP爆破"></item>
+	</dict>
+
+	<dict key="analysis_abnormal_event_rule_source" label="异常事件配置来源">
+		<item key="0" label="系统内置"></item>
+		<item key="1" label="自定义"></item>
+	</dict>
+
+	<dict key="analysis_abnormal_event_type" label="异常事件类型">
+		<item key="1" label="违规域名访问"></item>
+		<item key="2" label="可疑域名"></item>
+		<item key="11" label="违规IP访问"></item>
+		<item key="12" label="可疑IP"></item>
+		<item key="21" label="违规URL访问"></item>
+		<item key="31" label="文件泄密风险"></item>
+		<item key="41" label="可疑JA3"></item>
+		<item key="200" label="非标准协议"></item>
+		<item key="201" label="共享上网"></item>
+		<item key="202" label="ARP-扫描"></item>
+		<item key="203" label="ARP-欺骗"></item>
+		<item key="204" label="DHCP-Dos攻击"></item>
+		<item key="205" label="DHCP-假冒服务器"></item>
+		<item key="206" label="DNS-Dos攻击"></item>
+		<item key="207" label="DNS-回复报文超长"></item>
+	</dict>
+
+	<dict key="analysis_suricata_rule_action" label="suricata动作">
+		<item key="alert" label="告警"></item>
+	</dict>
+
+	<dict key="analysis_suricata_rule_target" label="suricata攻击目标">
+		<item key="src_ip" label="源"></item>
+		<item key="dest_ip" label="目的"></item>
+	</dict>
+
+	<dict key="analysis_suricata_signature_severity" label="suricata严重级别">
+		<item key="0" label="紧急"></item>
+		<item key="1" label="严重"></item>
+		<item key="2" label="一般"></item>
+		<item key="3" label="提示"></item>
+		<item key="4" label="审计"></item>
+	</dict>
+
+	<dict key="analysis_suricata_rule_parse_state" label="suricata解析状态">
+		<item key="0" label="未解析"></item>
+		<item key="1" label="解析成功"></item>
+		<item key="2" label="解析失败"></item>
+	</dict>
+
+	<dict key="analysis_suricata_rule_source" label="suricata配置来源">
+		<item key="0" label="系统内置"></item>
+		<item key="1" label="自定义"></item>
+	</dict>
+
+	<dict key="task_policy_assignment_state" label="任务策略下发状态">
+		<item key="0" label="下发成功"></item>
+		<item key="1" label="正在下发"></item>
+		<item key="2" label="下发失败"></item>
+		<item key="3" label="等待下发"></item>
+		<item key="4" label="取消下发"></item>
+		<item key="5" label="停止下发"></item>
+	</dict>
+
+	<dict key="task_execution_state" label="任务执行状态">
+		<item key="0" label="正常"></item>
+		<item key="1" label="停止"></item>
+		<item key="2" label="完成"></item>
+	</dict>
+
+	<!-- 上报字典 -->
+	<dict key="flow_log_tcp_session_state" label="流日志tcp会话状态">
+		<item key="0" label="SYN_SENT"></item>
+		<item key="1" label="SYN_RCVD"></item>
+		<item key="2" label="SYN_RST"></item>
+		<item key="3" label="ESTABLISHED"></item>
+		<item key="4" label="FIN_WAIT"></item>
+		<item key="5" label="RST_CLOSED"></item>
+		<item key="6" label="CLOSED"></item>
+	</dict>
+
+	<dict key="flow_log_ethernet_type" label="流日志eth类型">
+		<item key="0" label="ARP"></item>
+		<item key="1" label="IEEE802.1x"></item>
+		<item key="2" label="IPv4"></item>
+		<item key="3" label="IPv6"></item>
+		<item key="4" label="IPX"></item>
+		<item key="5" label="LACP"></item>
+		<item key="6" label="MPLS"></item>
+		<item key="7" label="STP"></item>
+		<item key="8" label="Other"></item>
+	</dict>
+
+	<dict key="flow_log_ethernet_protocol" label="流日志eth协议">
+		<item key="IPv4" label="IPv4"></item>
+		<item key="IPv6" label="IPv6"></item>
+		<item key="OTHER" label="OTHER"></item>
+	</dict>
+
+	<dict key="flow_log_ip_address_locality" label="流日志ip地址位置">
+		<item key="0" label="内网"></item>
+		<item key="1" label="外网"></item>
+	</dict>
+
+	<dict key="protocol_http_file_flag" label="HTTP文件传输方式">
+		<item key="0" label="非文件传输"></item>
+		<item key="1" label="上传"></item>
+		<item key="2" label="下载"></item>
+	</dict>
+
+	<dict key="protocol_http_auth_type" label="HTTP认证方式">
+		<item key="0" label="未知认证类型"></item>
+		<item key="1" label="基本认证"></item>
+		<item key="2" label="摘要认证"></item>
+		<item key="3" label="WSSE认证"></item>
+		<item key="4" label="令牌身份验证"></item>
+		<item key="5" label="JSON网络令牌认证"></item>
+		<item key="6" label="COOKIE认证"></item>
+	</dict>
+
+	<dict key="protocol_ssl_auth_type" label="SSL认证方式">
+		<item key="0" label="单向认证"></item>
+		<item key="1" label="双向认证"></item>
+	</dict>
+
+	<dict key="protocol_dhcp_version" label="DHCP版本">
+		<item key="0" label="DHCP"></item>
+		<item key="1" label="DHCPv6"></item>
+	</dict>
+
+	<dict key="protocol_dhcp_message_type" label="DHCP版本消息类型">
+		<item key="1" label="Discover"></item>
+		<item key="2" label="Offer"></item>
+		<item key="3" label="Request"></item>
+		<item key="4" label="Decline"></item>
+		<item key="5" label="ACK"></item>
+		<item key="6" label="NAK"></item>
+		<item key="7" label="Release"></item>
+		<item key="8" label="Inform"></item>
+		<item key="9" label="Force Renew"></item>
+		<item key="10" label="Lease query"></item>
+		<item key="11" label="Lease Unassigned"></item>
+		<item key="12" label="Lease Unknown"></item>
+		<item key="13" label="Lease Active"></item>
+		<item key="14" label="Bulk Lease Query"></item>
+		<item key="15" label="Lease Query Done"></item>
+		<item key="16" label="Active LeaseQuery"></item>
+		<item key="17" label="Lease Query Status"></item>
+		<item key="18" label="TLS"></item>
+	</dict>
+
+	<dict key="protocol_dhcpv6_message_type" label="DHCPV6版本消息类型">
+		<item key="1" label="Solicit"></item>
+		<item key="2" label="Advertise"></item>
+		<item key="3" label="Request"></item>
+		<item key="4" label="Confirm"></item>
+		<item key="5" label="Renew"></item>
+		<item key="6" label="Rebind"></item>
+		<item key="7" label="Reply"></item>
+		<item key="8" label="Release"></item>
+		<item key="9" label="Decline"></item>
+		<item key="10" label="Reconfigure"></item>
+		<item key="11" label="Information request"></item>
+		<item key="12" label="Relay forw"></item>
+		<item key="13" label="Relay reply"></item>
+		<item key="14" label="Leasequery"></item>
+		<item key="15" label="Leasequery reply"></item>
+		<item key="16" label="Leasequery done"></item>
+		<item key="17" label="Leasequery data"></item>
+		<item key="18" label="Reconfigure request"></item>
+		<item key="19" label="Reconfigure reply"></item>
+		<item key="20" label="Dhcpv4 query"></item>
+		<item key="21" label="Dhcpv4 response"></item>
+		<item key="22" label="Activeleasequery"></item>
+		<item key="23" label="Starttls"></item>
+		<item key="24" label="Bndupd"></item>
+		<item key="25" label="Bndreply"></item>
+		<item key="26" label="Poolreq"></item>
+		<item key="27" label="Poolresp"></item>
+		<item key="28" label="Updreq"></item>
+		<item key="29" label="Udpreqall"></item>
+		<item key="30" label="Upddone"></item>
+		<item key="31" label="Connect"></item>
+		<item key="32" label="Connectreply"></item>
+		<item key="33" label="Disconnect"></item>
+		<item key="34" label="State"></item>
+		<item key="35" label="Contact"></item>
+	</dict>
+
+	<dict key="protocol_ospf_message_type" label="OSPF消息类型">
+		<item key="1" label="Hello Packet"></item>
+		<item key="2" label="DB Description"></item>
+		<item key="3" label="LS Request"></item>
+		<item key="4" label="LS Update"></item>
+		<item key="5" label="LS Acknowledgement"></item>
+	</dict>
+
+	<dict key="protocol_arp_message_type" label="ARP报文类型">
+		<item key="1" label="request"></item>
+		<item key="2" label="reply"></item>
+		<item key="3" label="gratuitous"></item>
+	</dict>
+
+	<dict key="protocol_ldap_op_type" label="请求类型">
+		<item key="0" label="other"></item>
+		<item key="1" label="bind"></item>
+		<item key="2" label="search"></item>
+		<item key="3" label="unbind"></item>
+		<item key="4" label="modify"></item>
+		<item key="5" label="add"></item>
+		<item key="6" label="delete"></item>
+		<item key="7" label="mod_dn"></item>
+		<item key="8" label="compare"></item>
+		<item key="9" label="abandon"></item>
+		<item key="10" label="extended"></item>
+		<item key="11" label="intermediate"></item>
+	</dict>
+
+	<dict key="protocol_ldap_res_status" label="回复状态">
+		<item key="0" label=""></item>
+		<item key="1" label="success"></item>
+		<item key="2" label="failed"></item>
+	</dict>
+
+	<dict key="metric_application_type" label="应用统计粒度">
+		<item key="0" label="分类"></item>
+		<item key="1" label="子分类"></item>
+		<item key="2" label="应用"></item>
+	</dict>
+
+	<dict key="protocol_icmp_version" label="DHCP版本">
+		<item key="0" label="ICMPv4"></item>
+		<item key="1" label="ICMPv6"></item>
+	</dict>
+
+	<dict key="protocol_mail_protocol" label="MAIL协议">
+		<item key="POP3" label="POP3"></item>
+		<item key="IMAP" label="IMAP"></item>
+		<item key="SMTP" label="SMTP"></item>
+	</dict>
+
+	<dict key="metric_http_analysis_type" label="HTTP分析分类">
+		<item key="request_method" label="请求方法"></item>
+		<item key="status_code" label="状态码"></item>
+	</dict>
+
+	<dict key="appliance_offline_analysis_status" label="离线分析任务状态">
+		<item key="0" label="等待分析"></item>
+		<item key="1" label="正在分析"></item>
+		<item key="2" label="分析异常"></item>
+		<item key="3" label="分析完成"></item>
+		<item key="4" label="已删除"></item>
+	</dict>
+
+</dict-definition>
+

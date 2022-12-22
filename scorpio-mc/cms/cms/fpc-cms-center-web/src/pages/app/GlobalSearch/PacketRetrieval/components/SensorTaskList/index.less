@@ -1,0 +1,25 @@
+.expandIcon {
+  cursor: pointer;
+  &:hover {
+    color: @primary-color;
+  }
+}
+
+.assignmentTable {
+  :global {
+    .ant-table-expanded-row {
+      background: transparent;
+    }
+
+    .ant-descriptions-view table {
+      border-collapse: collapse;
+    }
+
+    .ant-descriptions-item-label {
+      width: 220px;
+    }
+    .ant-descriptions-item-content{
+      width: 320px;
+    }
+  }
+}

@@ -1,0 +1,127 @@
+@import '~@/utils/frame/utils.less';
+
+.gutter {
+  background: red;
+}
+
+.wrapper {
+  position: relative;
+  min-height: 500px;
+  background: var(--bg-color);
+}
+
+:global {
+  .Resizer {
+    z-index: 1;
+    background-color: #eee;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    border: 1px solid #ddd;
+    opacity: 0.4;
+  }
+
+  .Resizer:hover {
+    -webkit-transition: all 2s ease;
+    transition: all 2s ease;
+  }
+
+  .Resizer.horizontal {
+    width: 100%;
+    height: 8px;
+    cursor: row-resize;
+  }
+
+  .Resizer.horizontal:hover {
+    border-top: 5px solid rgba(0, 0, 0, 0.5);
+    border-bottom: 5px solid rgba(0, 0, 0, 0.5);
+  }
+
+  .Resizer.vertical {
+    width: 8px;
+    cursor: col-resize;
+  }
+}
+
+// 标题
+.headerWrap {
+  color: var(--font-color);
+  margin-bottom: 10px;
+  font-size: 1.17em;
+
+  .name {
+    display: inline-block;
+    max-width: 150px;
+    vertical-align: sub;
+    font-weight: bold;
+    .textOverflow();
+  }
+
+  .split {
+    margin: 0 4px;
+  }
+
+  .extra {
+    margin-left: 5px;
+    color: #999;
+  }
+
+  .back {
+    margin-left: 10px;
+    color: #999;
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  .quit {
+    margin: 0 10px;
+  }
+}
+
+.splitWrap {
+  div[data-type='Resizer'] {
+    background-color: #eee;
+    border: 1px solid #ddd;
+    opacity: 1;
+
+    &[data-attribute='vertical'] {
+      width: 8px;
+      min-width: 8px;
+      border-width: 0 1px;
+      cursor: col-resize;
+    }
+    &[data-attribute='horizontal'] {
+      height: 8px;
+      min-height: 8px;
+      border-width: 0 1px;
+      cursor: row-resize;
+    }
+  }
+
+  .paneCard {
+    height: 100%;
+    :global {
+      .ant-card-body {
+        height: 100%;
+        padding: 10px !important;
+      }
+    }
+  }
+}
+
+// 统计弹出框
+.statModal {
+  :global {
+    .ant-modal-header {
+      padding: 14px 14px;
+    }
+  }
+}
+
+:global(.dark) {
+  .splitWrap {
+    div[data-type='Resizer'] {
+      background-color: #353535;
+      border: 1px solid #313131;
+    }
+  }
+}

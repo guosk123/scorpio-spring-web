@@ -1,0 +1,318 @@
+{
+  "path": "/",
+  "component": "../layouts/BasicLayout",
+  "routes": [
+    { "path": "/", "redirect": "/redirect" },
+    {
+      "path": "/redirect",
+      "name": "home",
+      "hideInMenu": true,
+      "component": "./Redirect"
+    },
+    {
+      "path": "/home",
+      "name": "home",
+      "title": "概览",
+      "authority": ["PERM_USER"],
+      "icon": "dashboard",
+      "Routes": ["src/pages/frame/Authorized"],
+      "component": "./app/Home"
+    },
+    {
+      "path": "/application",
+      "name": "application",
+      "title": "业务配置",
+      "authority": ["PERM_USER"],
+      "icon": "database",
+      "Routes": ["src/pages/frame/Authorized"],
+      "component": "./app/Application/Layout",
+      "hideChildrenInMenu": true,
+      "routes": [
+        { "path": "/application", "redirect": "/application/task-assignment" },
+        {
+          "path": "/application/task-assignment",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "task-assignment",
+          "title": "任务管理",
+          "component": "./app/Application/AssignmentTask/List"
+        },
+        {
+          "path": "/application/task-assignment/create",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "create-task-assignment",
+          "title": "新建任务",
+          "component": "./app/Application/AssignmentTask/CreateForm"
+        },
+        {
+          "path": "/application/task-assignment/update",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "update-task-assignment",
+          "title": "编辑任务",
+          "component": "./app/Application/AssignmentTask/CreateForm"
+        },
+        {
+          "path": "/application/task-assignment/copy",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "copy-task-assignment",
+          "title": "复制任务",
+          "component": "./app/Application/AssignmentTask/CreateForm"
+        },
+        {
+          "path": "/application/policy",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "policy",
+          "title": "策略管理",
+          "component": "./app/Application/Policy/List"
+        },
+        {
+          "path": "/application/policy/create",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "create-policy",
+          "title": "新建策略",
+          "component": "./app/Application/Policy/Create"
+        },
+        {
+          "path": "/application/policy/update",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "update-policy",
+          "title": "编辑策略",
+          "component": "./app/Application/Policy/Update"
+        },
+        {
+          "path": "/application/policy/fpc",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "policy",
+          "title": "设备策略",
+          "component": "./app/Central/Policy"
+        }
+      ]
+    },
+    {
+      "path": "/central",
+      "name": "central",
+      "title": "设备管理",
+      "authority": ["PERM_USER"],
+      "icon": "appstore",
+      "Routes": ["src/pages/frame/Authorized"],
+      "component": "./app/Central/Layout",
+      "hideChildrenInMenu": true,
+      "routes": [
+        { "path": "/central", "redirect": "/central/fpc" },
+        {
+          "path": "/central/fpc",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "fpc",
+          "title": "设备管理",
+          "component": "./app/Central/FPC/List"
+        },
+        {
+          "path": "/central/fpc/create",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "fpc.create",
+          "title": "添加设备",
+          "component": "./app/Central/FPC/Create"
+        },
+        {
+          "path": "/central/fpc/update",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "fpc.update",
+          "title": "编辑设备",
+          "component": "./app/Central/FPC/Update"
+        },
+        {
+          "path": "/central/calendar",
+          "name": "fpc.calendar",
+          "title": "数据统计",
+          "hideInMenu": true,
+          "Routes": ["src/pages/frame/Authorized"],
+          "component": "./app/Central/CalendarGraph"
+        },
+        {
+          "path": "/central/group",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "fpc-group",
+          "title": "设备组管理",
+          "component": "./app/Central/Group/List"
+        },
+        {
+          "path": "/central/group/create",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "fpc-group.create",
+          "title": "新增设备组",
+          "component": "./app/Central/Group/Create"
+        },
+        {
+          "path": "/central/group/update",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "fpc-group.update",
+          "title": "编辑设备组",
+          "component": "./app/Central/Group/Update"
+        },
+        {
+          "path": "/central/monitor/system",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "fpc.monitor.system",
+          "title": "设备状态",
+          "component": "./app/Central/Monitor/System"
+        },
+        {
+          "path": "/central/monitor/netif",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "fpc.monitor.netif",
+          "title": " 业务接口",
+          "component": "./app/Central/Monitor/Netif"
+        },
+        {
+          "path": "/central/monitor/disk",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "fpc.monitor.disk",
+          "title": "RAID状态",
+          "component": "./app/Central/Monitor/Disk"
+        },
+        {
+          "path": "/central/log",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "fpc.log",
+          "title": "设备日志",
+          "component": "./app/Central/Log"
+        },
+        {
+          "path": "/central/alarm",
+          "Routes": ["src/pages/frame/Authorized"],
+          "name": "fpc.alarm",
+          "title": "设备告警",
+          "component": "./app/Central/Alarm"
+        },
+        {
+          "path": "/central/alarm/detail",
+          "name": "fpc.alarm.detail",
+          "title": "告警详情",
+          "hideInMenu": true,
+          "Routes": ["src/pages/frame/Authorized"],
+          "component": "./app/Central/AlarmDetail"
+        }
+      ]
+    },
+    {
+      "path": "/system",
+      "icon": "setting",
+      "name": "system",
+      "title": "系统管理",
+      "component": "./app/System/Layout",
+      "hideChildrenInMenu": true,
+      "Routes": ["src/pages/frame/Authorized"],
+      "authority": ["PERM_SYS_USER", "PERM_AUDIT_USER"],
+      "routes": [
+        {
+          "path": "/system",
+          "Routes": ["src/pages/frame/Authorized"],
+          "component": "./app/System"
+        },
+        {
+          "path": "/system/monitor",
+          "name": "monitor",
+          "title": "系统状态",
+          "Routes": ["src/pages/frame/Authorized"],
+          "authority": ["PERM_SYS_USER"],
+          "component": "./app/System/Monitor"
+        },
+        {
+          "path": "/system/log",
+          "name": "log",
+          "title": "日志中心",
+          "Routes": ["src/pages/frame/Authorized"],
+          "component": "./frame/System/Log"
+        },
+        {
+          "path": "/system/alarm",
+          "name": "alarm",
+          "title": "告警中心",
+          "Routes": ["src/pages/frame/Authorized"],
+          "authority": ["PERM_SYS_USER"],
+          "component": "./frame/System/Alarm"
+        },
+        {
+          "path": "/system/alarm/detail",
+          "name": "alarmDetail",
+          "title": "告警详情",
+          "hideInMenu": true,
+          "Routes": ["src/pages/frame/Authorized"],
+          "authority": ["PERM_SYS_USER"],
+          "component": "./frame/System/Alarm/Detail"
+        },
+        {
+          "path": "/system/user",
+          "name": "user",
+          "title": "用户管理",
+          "Routes": ["src/pages/frame/Authorized"],
+          "authority": ["PERM_SYS_USER"],
+          "component": "./frame/System/User"
+        },
+        {
+          "path": "/system/user/create",
+          "name": "create-user",
+          "title": "新增用户",
+          "Routes": ["src/pages/frame/Authorized"],
+          "authority": ["PERM_SYS_USER"],
+          "hideInMenu": true,
+          "component": "./frame/System/User/Create"
+        },
+        {
+          "path": "/system/user/update",
+          "name": "update-user",
+          "title": "编辑用户",
+          "Routes": ["src/pages/frame/Authorized"],
+          "authority": ["PERM_SYS_USER"],
+          "hideInMenu": true,
+          "component": "./frame/System/User/Update"
+        },
+        {
+          "path": "/system/role",
+          "name": "role",
+          "title": "角色管理",
+          "Routes": ["src/pages/frame/Authorized"],
+          "authority": ["PERM_SYS_USER"],
+          "hideInMenu": true,
+          "component": "./frame/System/User/Role"
+        },
+        {
+          "path": "/system/device-ntp",
+          "name": "device-ntp",
+          "title": "系统时间",
+          "Routes": ["src/pages/frame/Authorized"],
+          "authority": ["PERM_SYS_USER"],
+          "component": "./frame/System/DeviceNTP"
+        },
+        {
+          "path": "/system/archive",
+          "name": "archive",
+          "title": "归档备份",
+          "Routes": ["src/pages/frame/Authorized"],
+          "authority": ["PERM_SYS_USER"],
+          "component": "./frame/System/Archive"
+        },
+        {
+          "path": "/system/security",
+          "name": "security",
+          "title": "安全配置",
+          "Routes": ["src/pages/frame/Authorized"],
+          "authority": ["PERM_SYS_USER"],
+          "component": "./frame/System/Security"
+        }
+      ]
+    },
+    {
+      "path": "/restapi",
+      "name": "restapi",
+      "title": "RESTAPI用户",
+      "icon": "api",
+      "hideInMenu": true,
+      "Routes": ["src/pages/frame/Authorized"],
+      "authority": ["PERM_RESTAPI_USER"],
+      "component": "./frame/RestAPI/index"
+    },
+    {
+      "component": "./frame/Exception/404"
+    }
+  ]
+}

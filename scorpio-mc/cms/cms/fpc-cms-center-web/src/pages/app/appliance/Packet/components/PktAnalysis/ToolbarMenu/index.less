@@ -1,0 +1,16 @@
+.menuWrap {
+  height: 30px;
+  line-height: 30px;
+
+  .menuItem {
+    & + .menuItem {
+      margin-left: 2px;
+    }
+  }
+}
+.subMenu {
+  &.maxHeight {
+    max-height: 400px;
+    overflow: auto;
+  }
+}

@@ -1,0 +1,29 @@
+.transferWrap {
+  :global {
+    .ant-transfer-list {
+      &:nth-child(1) {
+        .ant-transfer-list-body-search-wrapper,
+        .ant-transfer-list-header-dropdown,
+        .ant-transfer-list-header-selected {
+          display: none !important;
+        }
+      }
+    }
+    .ant-transfer-list-content {
+      max-height: 300px;
+      overflow: auto;
+    }
+    .ant-transfer-list-body-customize-wrapper {
+      min-height: 300px;
+    }
+    .tree-search-value {
+      color: #f50;
+    }
+  }
+
+  .source {
+    .sourceSearch {
+      padding: 12px;
+    }
+  }
+}

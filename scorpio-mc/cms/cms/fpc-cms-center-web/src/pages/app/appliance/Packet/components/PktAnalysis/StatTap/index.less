@@ -1,0 +1,107 @@
+@import '~@/utils/frame/utils.less';
+
+.loading {
+  width: 100%;
+  text-align: center;
+}
+
+.flowSeqWrap {
+  overflow: auto;
+  overflow-y: hidden;
+  font-size: 12px !important;
+
+  .seqTime {
+  }
+
+  .seqLabel {
+    text-anchor: middle;
+    .textOverflow();
+  }
+
+  .seqLine {
+    display: inline-block;
+    .arrow {
+      position: relative;
+      top: -6px;
+      &::before {
+        position: absolute;
+        width: 0;
+        height: 0;
+        border: 6px solid transparent;
+        content: '';
+      }
+    }
+
+    &.end {
+      .arrow {
+        left: ~'calc(100% - 6px)';
+        &::before {
+          border-right: 0;
+          border-left-color: orange;
+        }
+      }
+    }
+    &.start {
+      .arrow::before {
+        left: 0 !important;
+        border-right-color: orange;
+        border-left: 0;
+      }
+    }
+  }
+
+  .nodeHost {
+    vertical-align: top;
+  }
+  .nodeLine {
+    display: block;
+    width: 1px;
+    border-left: 1px solid #ccc;
+  }
+}
+
+.modalFooter {
+  display: flex;
+  justify-content: space-between;
+  text-align: left;
+
+  .baseSelect span {
+    margin-right: 10px;
+  }
+}
+
+.followContent {
+  padding: 9px;
+  font-size: 14px;
+  font-family: monospace;
+  white-space: pre-wrap;
+  word-break: break-all;
+
+  .followServer {
+    color: #00007f; /* gui.stream.server.fg */
+    background-color: #ededfb; /* gui.stream.server.bg */
+  }
+  .followClient {
+    color: #7f0000; /* gui.stream.client.fg */
+    background-color: #fbeded; /* gui.stream.client.bg */
+  }
+}
+
+.downloadIcon {
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.fullscreenModal {
+  top: 2.5% !important;
+  width: 95% !important;
+  height: 95vh;
+  padding-bottom: 0;
+
+  :global {
+    .ant-modal-body {
+      height: calc(95vh - 108px) !important;
+      overflow-y: auto;
+    }
+  }
+}

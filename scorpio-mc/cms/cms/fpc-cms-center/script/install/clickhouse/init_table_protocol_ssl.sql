@@ -1,0 +1,42 @@
+DROP TABLE IF EXISTS fpc.d_fpc_protocol_ssl_log_record;
+CREATE TABLE IF NOT EXISTS fpc.d_fpc_protocol_ssl_log_record
+(
+`level` LowCardinality(String) COMMENT '采集策略等级',
+`policy_name` LowCardinality(String) COMMENT '采集策略名称',
+`flow_id` UInt64 COMMENT '流ID',
+`network_id` Array(LowCardinality(String)) COMMENT '网络ID', 
+`service_id` Array(LowCardinality(String)) COMMENT '业务ID',
+`application_id` UInt32 COMMENT '应用ID',
+`start_time` DateTime64(9, 'UTC') COMMENT '开始时间',
+`end_time` DateTime64(9, 'UTC') COMMENT '结束时间',
+`src_ipv4` Nullable(IPv4) COMMENT '源IPv4',
+`src_ipv6` Nullable(IPv6) COMMENT '源IPv6',
+`src_port` UInt16 COMMENT '源端口',
+`dest_ipv4` Nullable(IPv4) COMMENT '目的IPv4',
+`dest_ipv6` Nullable(IPv6) COMMENT '目的IPv6',
+`dest_port` UInt16 COMMENT '目的端口',
+`server_name` String COMMENT '服务器名称',
+`server_certs_sha1` Array(String) COMMENT '服务器证书SHA1值',
+`ja3_client` String COMMENT 'JA3客户端指纹',
+`ja3_server` String COMMENT 'JA3服务端指纹',
+`version` LowCardinality(String) COMMENT 'SSL版本',
+`cipher_suite` LowCardinality(String) COMMENT '加密套件',
+`signature_algorithm` LowCardinality(String) COMMENT '签名算法',
+`issuer` LowCardinality(String) COMMENT '证书签发人',
+`issuer_urls` String COMMENT '颁发者证书链接',
+`ocsp_urls` String COMMENT '证书状态服务器',
+`common_name` String COMMENT '证书使用者',
+`validity` String COMMENT '证书有效期',
+`crl_urls` String COMMENT '证书吊销列表链接',
+`certs_len` UInt16 COMMENT '证书链长度',
+`is_reuse` UInt8 COMMENT '会话复用（0表示未复用，1标识复用）',
+`auth_type` UInt8 COMMENT '认证方式(0:单项向认证,1:双向认证)',
+`client_cipher_suite` Array(String) COMMENT '客户端支持的加密套件',
+`client_extensions` Array(LowCardinality(String)) COMMENT '客户端使用的拓展类型',
+`server_extensions` Array(String) COMMENT '服务器使用的拓展类型',
+`client_cur_version` Nullable(String) COMMENT '客户端当前使用的SSL版本',
+`client_max_version` Nullable(String) COMMENT '客户端支持的最高SSL版本',
+`sec_proto` UInt8 COMMENT 'DTLS标识（0：false;1:true）'
+)  
+ENGINE = Distributed(clickhouse_servers, fpc, t_fpc_protocol_ssl_log_record)
+COMMENT '应用层协议详单-SSL协议详单表';

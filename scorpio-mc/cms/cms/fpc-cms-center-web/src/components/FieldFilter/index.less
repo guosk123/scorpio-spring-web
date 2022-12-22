@@ -1,0 +1,41 @@
+.filterWrap {
+  .filterFormWrap {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .tag {
+    cursor: pointer;
+  }
+  .removeTagBtn {
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: middle;
+    :global {
+      .anticon {
+        font-size: 14px;
+      }
+    }
+  }
+  :global(.ant-form-item) {
+    margin-bottom: 0;
+  }
+}
+
+.operandWrap {
+  width: 200px;
+}
+.sourceInput {
+  width: 100% !important;
+}
+
+.filterCard {
+  margin-bottom: 10px;
+  :global(.ant-card-head-title) {
+    padding: 0 !important;
+  }
+}
+
+.filterTagWarp {
+  margin: 10px 0;
+}
