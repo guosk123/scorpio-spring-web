@@ -1,4 +1,0 @@
-`数据类型`,`名称（必填，最多30个字符）`,`配置`,`描述（选填，描述内容需用``引起，如果不填请填写``，最多255个字符）`
-`custom-categorys`,`自定义分类`,`子分类1/子分类2`,`描述信息`
-`custom-subcategorys`,`自定义子分类`,`{"category":"分类1","applications":"应用1/应用2"}`,`描述信息`
-`custom-applications`,`自定义应用`,`{"category":"分类1","subcategory":"子分类1","l7Protocol":"HTTP","rule":"[{\"name\":\"规则名称\",\"ipAddress\":\"x.x.x.x\",\"protocol\":\"传输层协议(all/tcp/udp)\",\"port\":\"端口号\",\"signatureType\":\"签名类型(hex/ascii)\",\"signatureOffset\":\"签名偏移位数\",\"signatureContent\":\"签名内容\"}]"}`,`描述信息`
