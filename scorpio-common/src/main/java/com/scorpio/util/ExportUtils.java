@@ -1,4 +1,4 @@
-package com.scorpio.util;
+package com.machloop.alpha.common.util;
 
 import java.io.File;
 import java.io.IOException;
@@ -7,9 +7,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.annotation.Nullable;
-
 import com.scorpio.Constants;
+import com.scorpio.util.CsvUtils;
+import jakarta.annotation.Nullable;
+
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -88,9 +89,63 @@ public final class ExportUtils {
       } catch (IOException e) {
         LOGGER.warn("export failed, delete tmp file: {}", file.getAbsolutePath());
         FileUtils.deleteQuietly(file);
+        throw new BusinessException(ErrorCode.COMMON_BASE_COMMAND_RUN_ERROR, "服务器运行异常，导出失败");
       }
 
       index++;
+    }
+
+    // 导出模式为execl时，销毁写对象
+    if (excelWriter != null) {
+      excelWriter.finish();
+    }
+
+    // 将文件内容写入到输出流
+    if (out != null) {
+      FileUtils.copyFile(file, out);
+      FileUtils.deleteQuietly(file);
+    }
+  }
+
+  public static void exportByDataset(List<String> titles, List<List<String>> dataset, File file,
+      String fileType, @Nullable OutputStream out) throws IOException {
+    // 判断导出格式是否合法
+    if (!StringUtils.equalsAnyIgnoreCase(fileType, Constants.EXPORT_FILE_TYPE_CSV,
+        Constants.EXPORT_FILE_TYPE_EXCEL)) {
+      LOGGER.warn("Unsupported export file style: {}", fileType);
+      throw new UnsupportedOperationException("不支持的导出样式");
+    }
+
+    // 导出模式为execl时，初始化写对象
+    ExcelWriter excelWriter = null;
+    WriteSheet writeSheet = null;
+    if (StringUtils.equals(fileType, Constants.EXPORT_FILE_TYPE_EXCEL)) {
+      List<List<String>> header = titles.stream().map(item -> Lists.newArrayList(item))
+          .collect(Collectors.toList());
+
+      excelWriter = EasyExcel.write(file).head(header).build();
+      writeSheet = EasyExcel.writerSheet("dataset").build();
+    } else {
+      String title = CsvUtils.spliceRowData(titles.toArray(new String[titles.size()]));
+      FileUtils.writeStringToFile(file, title, "UTF-8", false);
+    }
+
+    // 遍历数据，写入到文件内
+    try {
+      if (CollectionUtils.isNotEmpty(dataset)) {
+        if (StringUtils.equals(fileType, Constants.EXPORT_FILE_TYPE_CSV)) {
+          for (List<String> line : dataset) {
+            FileUtils.writeStringToFile(file,
+                CsvUtils.spliceRowData(line.toArray(new String[line.size()])), "UTF-8", true);
+          }
+        } else {
+          excelWriter.write(dataset, writeSheet);
+        }
+      }
+    } catch (IOException e) {
+      LOGGER.warn("export failed, delete tmp file: {}", file.getAbsolutePath());
+      FileUtils.deleteQuietly(file);
+      throw new BusinessException(ErrorCode.COMMON_BASE_COMMAND_RUN_ERROR, "服务器运行异常，导出失败");
     }
 
     // 导出模式为execl时，销毁写对象
@@ -122,7 +177,7 @@ public final class ExportUtils {
     private int batchSize = 100;
 
     /**
-     * @see Iterator#hasNext()
+     * @see java.util.Iterator#hasNext()
      */
     @Override
     public boolean hasNext() {
@@ -130,7 +185,7 @@ public final class ExportUtils {
     }
 
     /**
-     * @see Iterator#next()
+     * @see java.util.Iterator#next()
      */
     @Override
     public List<List<String>> next() {
